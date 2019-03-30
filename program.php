@@ -15,7 +15,7 @@ $i++;
 if($_COOKIE["awdigiecookie"] == $data["settings"][1] ){ 
 $datafile= $data["other"][1];
 
-if($timeline){
+if(isset($_GET["timeline"])){
 $ttfile=file($datafile);
 $back= imagecreatefromjpeg("timeline.jpg");
 imagefill($back,0,0,ImageColorAllocate($back,109,109,224));
@@ -62,7 +62,7 @@ imagedestroy($back);
 
 }else{
 
-if($driveimage){
+if(isset($_GET["driveimage"])){
 $fim= imagecreatefromjpeg("FB.jpg");
 $i=1;
 $sd=0;

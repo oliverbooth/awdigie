@@ -19,7 +19,7 @@ function savedata($linenum,$brnum,$value){
 global $new_file;
 $brea = explode("^^",$new_file[$linenum]);  
 $brea[$brnum]="$value";
-return $new_file[$linenum] = "". ereg_replace("(\r\n|\n|\r)", "", implode("^^", $brea) ) ."\n";
+return $new_file[$linenum] = "". preg_replace("[\r\n]", "", implode("^^", $brea) ) ."\n";
 }
 
 if($logout == "true"){
@@ -50,17 +50,17 @@ if(isset($update_preview)){  savedata($update_preview,23,$value); $inputfile = "
 if(isset($setprv)){ savedata($setprv,22,$value);
 $inputfile = "yes";
 }
-if(isset($thismode)){ 
-if(isset($thislive)){ $tmo ="live";  
+if(isset($_GET["thismode"])){ 
+if(isset($_GET["thislive"])){ $tmo ="live";  
 savedata(1,5,time());
 }
-if(isset($thisprogram)){ $tmo ="program";  }
-if(isset($thistd)){ $tmo ="TD";  }
+if(isset($_GET["thisprogram"])){ $tmo ="program";  }
+if(isset($_GET["thistd"])){ $tmo ="TD";  }
 $new_file[8]="mode^^$tmo^^".time()."^^
 ";
 $inputfile = "yes";
 }//if thismode
-if(isset($setother)){ 
+if(isset($_GET["setother"])){ 
 $broth = explode("^^",$new_file_data[7]); 
 $new_file[7]="other^^$prog_txt^^$prog_wen^^$broth[3]^^$prog_wa^^$progwpos^^$broth[6]^^$plugin^^$broth[8]^^$broth[9]^^\n";
 $inputfile = yes;
