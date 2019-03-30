@@ -7,6 +7,7 @@ $dbwateren = isset($_GET["dbwateren"]) ? $_GET["dbwateren"] : "";
 $dbfunction = isset($_GET["dbfunction"]) ? $_GET["dbfunction"] : "";
 
 if ($data["mode"][1] == "TD") {
+    header("Content-type: image/jpeg");
     readfile($data["settings"][10]);
 } else {
     if ($data["mode"][1] == "program") {
