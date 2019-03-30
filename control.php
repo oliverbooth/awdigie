@@ -84,7 +84,7 @@ $bren = explode("&",$bro[3]);
 if(isset($save_channels) or isset($chcopy)){  
 $otherbr =  explode("^^",$new_file[7]);
 $chen_sep =  explode("&",$otherbr[3]);
-savedata(7,3,"&".$chan[1][enable]."&".$chan[2][enable]."&".$chan[3][enable]."&".$chan[4][enable]."&");
+savedata(7,3,"&".$chan[1]["enable"]."&".$chan[2]["enable"]."&".$chan[3]["enable"]."&".$chan[4]["enable"]."&");
 $e=2;
 
 
@@ -94,11 +94,11 @@ $brp='';
 $brp = explode("^^",ereg_replace("(\r\n|\n|\r)", "", $new_file_data[$e])); 
 $pass='';
 $brta = explode("-",$brp[5]);
-if($brta[0] !== $chan[($e -1)][atsec]){
- $at_br = "".$chan[($e -1)][atsec]."-".time().""; }else{ 
+if($brta[0] !== $chan[($e -1)]["atsec"]){
+ $at_br = "".$chan[($e -1)]["atsec"]."-".time().""; }else{ 
  $at_br = $brp[5]; }
 
-$new_file[$e] = "channel".$H."^^".$chan[$H][address]."^^".stripslashes(str_replace("\r\n", "returnthisline", $chan[$H][notes]))."^^".$chan[$H][texten]."^^".$chan[$H][text]."^^$at_br^^".$chan[$H][secen]."^^".$chan[$H][wateren]."^^".$chan[$H][water]."^^".$chan[$H][timeen]."^^".$brp[10]."^^".$chan[$H][enable]."^^".$brp[12]."^^".$brp[13]."^^".$brp[14]."^^".$brp[15]."^^".$chan[$H][texveric]."^^".$chan[$H][water_pos]."^^".$brp[18]."^^".$chan[$H][shadow]."^^".$brp[20]."^^".$brp[21]."^^".$brp[22]."^^".$brp[23]."^^".$brp[24]."^^
+$new_file[$e] = "channel".$H."^^".$chan[$H]["address"]."^^".stripslashes(str_replace("\r\n", "returnthisline", $chan[$H]["notes"]))."^^".$chan[$H]["texten"]."^^".$chan[$H]["text"]."^^$at_br^^".$chan[$H]["secen"]."^^".$chan[$H]["wateren"]."^^".$chan[$H]["water"]."^^".$chan[$H]["timeen"]."^^".$brp[10]."^^".$chan[$H]["enable"]."^^".$brp[12]."^^".$brp[13]."^^".$brp[14]."^^".$brp[15]."^^".$chan[$H]["texveric"]."^^".$chan[$H]["water_pos"]."^^".$brp[18]."^^".$chan[$H]["shadow"]."^^".$brp[20]."^^".$brp[21]."^^".$brp[22]."^^".$brp[23]."^^".$brp[24]."^^
 ";
 
 if($chcopy[($e -1)] !== "Copy" && "".$chcopy[($e -1)]."" !== ""){
@@ -116,7 +116,7 @@ $e++;
 }
 $brgl = explode("^^",$new_file_data[6]); 
 $brat = explode("-",$brgl[3]); 
-if($brat[0] !== $globe[atsec]){ $at_br2 = "".$globe[atsec]."-".time()."";  }else{ $at_br2 = $brgl[3]; }
+if($brat[0] !== $globe["atsec"]){ $at_br2 = "".$globe["atsec"]."-".time()."";  }else{ $at_br2 = $brgl[3]; }
 $new_file[6] = "globe^^$globe[texten]^^$globe[texveric]^^$at_br2^^$globe[wateren]^^$globe[water]^^$globe[posi]^^$globe[text]^^$globe[enable]^^$brgl[9]^^$brgl[10]^^$brgl[11]^^$brgl[12]^^$brgl[13]^^".$chan[globe][shadow]."^^$brgl[15]^^
 ";
 $inputfile = "yes";
