@@ -185,7 +185,6 @@ $chen_sep =  explode("&",$data["other"][3]);
 
 if($_POST["password_login"]){
 if(!$password_login)$probs = "<li>AWD Doesnt Support Your Server</li>";
-if(!eregi("MSIE", $_SERVER["HTTP_USER_AGENT"]))$probs .='<li>You Must be Running Internet Explorer 5+</li>';
 if(!function_exists('imagettftext'))$probs .='<li>Your Copy of PHP must have the <a href=http://www.freetype.org/>FreeType</a> installed</li>';
 if(!function_exists('imageline'))$probs .='<li>Server must have the <a href=http://www.boutell.com/gd/>GD Library</a> installed</li>';
 if($probs)exit('<center><li><strong>You do not meet the requirements </strong></li><br>'.$probs.'<br><img src="http://www.vmist.net/activeworlds/awscripts/awdigie/error_on_startup.jpg"></center>');
