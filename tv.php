@@ -28,7 +28,7 @@ if(  (@include($biir[2]))  == false){ $error = $error."-CANT USE IM PLUG: ".$bii
 }
 }else{
 $progf = explode("\n", $pimages); 
-$dbaddess=  preg_replace("/\n/","",$progf[(time()/10)%sizeof($progf)]); 
+$dbaddess=  preg_replace("/[\r\n]/","",$progf[(time()/10)%sizeof($progf)]); 
 }
 
 if(($image = @imagecreatefromjpeg("$dbaddess")) == FALSE){ $error = $error."-CANT USE IMAGE: $dbaddess \n";  }
@@ -47,7 +47,7 @@ $current=$data[$ch[(rand(0,3))]];
 }else{
 if($data["settings"][6] == "yes"){ 
 if(($rotchn = @file($data["settings"][7])) == false){ $error = $error."-CANT USE CH ROTATE FILE\n";  }
-$current =$data[(preg_replace("/\n/","",$rotchn[(time()/10)%sizeof($rotchn)]))];
+$current =$data[(preg_replace("/[\r\n]/","",$rotchn[(time()/10)%sizeof($rotchn)]))];
 }else{
 $current=$data[$data["settings"][4]];
 }
@@ -70,7 +70,7 @@ if(  (@include($data["other"][7]))  == false){ $error = $error."-CANT USE PLUGIN
 if($data["overchan"] !== ""){ $current=$data[$data["overchan"]];  }
 if (preg_match("/\\.txt/i", $dbaddess) ){
 if(($tdf= @file("$dbaddess"))  == FALSE){ $error = $error."-CANT OPEN FILE: $dbaddess \n"; }
-$dbaddess=  preg_replace("/\n/","",$tdf[(time()/10)%sizeof($tdf)]); 
+$dbaddess=  preg_replace("/[\r\n]/","",$tdf[(time()/10)%sizeof($tdf)]); 
 }else{
 if($data["settings"][13] == "yes"  ){ 
 $bsw = explode("%",$data["settings"][14]);
