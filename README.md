@@ -1,5 +1,5 @@
 # AWDigie
-AWDigie is a sophisticated web tool providing [Active Worlds](https://activeworlds.com/) users the ability to control and monitor TV stations with live broadcasting and predefined programming.
+AWDigie is a sophisticated web tool written by Pineriver (real name withheld) providing [Active Worlds](https://activeworlds.com/) users the ability to control and monitor TV stations with live broadcasting and predefined programming.
 
 # Directions
 Clone repository or grab the [latest release](oliverbooth/awdigie/releases)
