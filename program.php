@@ -12,8 +12,8 @@ $data[$br[0]][]=$brsett;
 }
 $i++;
 }
-if($_COOKIE[awdigiecookie] == $data[settings][1] ){ 
-$datafile= $data[other][1];
+if($_COOKIE["awdigiecookie"] == $data["settings"][1] ){ 
+$datafile= $data["other"][1];
 
 if($timeline){
 $ttfile=file($datafile);
@@ -91,7 +91,7 @@ imagedestroy($fim);
 
 function notes($in){  
 global $data;
-if($data[other][6] == Show){ echo "<font color=\"#003366\" size=2>$in</font> ";  }}
+if($data["other"][6] == "Show"){ echo "<font color=\"#003366\" size=2>$in</font> ";  }}
 
 function short($in){
 global $strlength;
@@ -181,7 +181,7 @@ fputs($fp,"$lines[$a]");
 fclose($fp);
 }
 $set=file("$datafile");
-$net = explode("^%",$data[other][8]); 
+$net = explode("^%",$data["other"][8]); 
 $total_images=substr_count(join($set), "|");
 ?>
 <style type="text/css">

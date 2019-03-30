@@ -11,10 +11,10 @@ $data[$br[0]][]=$brsett;
 $orimage=imagecreatefromjpeg("$im");
 $getsize=getimagesize($im);
 $image =imagecreatetruecolor($getsize[0],$getsize[1]);
-if("$buse" !== "" && file_exists($data[channel.$buse][1]) && "$rotate"=="0"){  
-$bckim =imagecreatefromjpeg($data[channel.$buse][1]);
-$getcan=getimagesize($data[channel.$buse][1]);
-if($dontsizeback == yes){ $getcan[0] = $getsize[0]; $getcan[1] = $getsize[1]; }
+if("$buse" !== "" && file_exists($data["channel".$buse][1]) && "$rotate"=="0"){  
+$bckim =imagecreatefromjpeg($data["channel".$buse][1]);
+$getcan=getimagesize($data["channel".$buse][1]);
+if($dontsizeback == "yes"){ $getcan[0] = $getsize[0]; $getcan[1] = $getsize[1]; }
 $image =imagecreatetruecolor($getcan[0],$getcan[1]);
 imageCopyResampled($image,$bckim,0,0,0,0,$getsize[0],$getsize[1],$getsize[0],$getsize[1]);
 }

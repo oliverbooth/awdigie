@@ -10,10 +10,10 @@ $data[$br[0]][]=$brsett;
 }
 $i++;
 }
-if($_COOKIE[awdigiecookie] == $data[settings][1] ){ 
-$chn = channel.$change;
-if($change == globe){
-list($dbthisshow,$dbtexten,$dbtexveric,$dbatsec,$dbwateren,$dbwater,$dbposi,$dbtext,$dbenable,$dbfont,$dbtextpos,$dbcolor,$dbtextsize,,,$dbtxtsetting) = $data[globe];
+if($_COOKIE["awdigiecookie"] == $data["settings"][1] ){ 
+$chn = "channel".$change;
+if($change == "globe"){
+list($dbthisshow,$dbtexten,$dbtexveric,$dbatsec,$dbwateren,$dbwater,$dbposi,$dbtext,$dbenable,$dbfont,$dbtextpos,$dbcolor,$dbtextsize,,,$dbtxtsetting) = $data["globe"];
 }else{
 list($dbthisshow,$dbaddess,$dbnotes,$dbtexten,$dbtext,$dbatsec,$dbsecen,$dbwateren,$dbwater,$dbtimeen,$dbttmmee,$dbenable,$dbtextpos,$dbfont,$dbcolor,$dbtextsize,$dbtexveric,$dbposi,$dbtxtsetting,$dbshadown,$dbshset,$dbzoom,$chnpwset,$dbprev,$dbfunction) = $data[$chn];
 }
@@ -35,12 +35,12 @@ echo "<title>$in</title>\n<center><font color=\"#0066CC\" size=\"2\"><strong>$in
 
 function notes($in){  
 global $data;
-if($data[other][6] == Show ){ echo "<font  size=2>$in</font> ";  }} 
+if($data["other"][6] == "Show" ){ echo "<font  size=2>$in</font> ";  }} 
 
 function savedata($brnum,$value){
 global $new_file,$change;
-if($change == globe){ $lnu = 6; }else{  $lnu = ($change+1); }
-if($change == other){ $lnu = 7; }
+if($change == "globe"){ $lnu = 6; }else{  $lnu = ($change+1); }
+if($change == "other"){ $lnu = 7; }
 $brea = explode("^^",$new_file[$lnu]);  
 $brea[$brnum]="$value";
 return $new_file[$lnu] = implode("^^", $brea);
@@ -65,7 +65,7 @@ if("$change" !== "globe"){
   </table>
 <?php }}
 
-if ($mode == position){
+if ($mode == "position"){
 if("$pos_sub" == ""){
 
 title("Position Text");
@@ -86,12 +86,12 @@ title("Position Text");
 
 if("$sameas" == ""){ $vals = "".$d_x."-".$d_y.""; }else{ $vals = $data[$sameas][12]; }
 
-if($change == globe){ $rb =10; }else{ $rb =12; }
+if($change == "globe"){ $rb =10; }else{ $rb =12; }
 savedata($rb,$vals);
-$inputfile = yes;
+$inputfile = "yes";
 }
 }
-if($mode == font){
+if($mode == "font"){
 if($font_sub == ""){
 
 title("Text Font");
@@ -127,11 +127,11 @@ echo "<option value=\"$filename\" ";  if( $dbfont == $filename){ echo selected; 
 }else{
 
 if("$sameas" !== ""){ $font = $data[$sameas][13]; }
-if($change == globe){ $rb =9; }else{ $rb =13; }
+if($change == "globe"){ $rb =9; }else{ $rb =13; }
 savedata($rb,$font);
-$inputfile = yes;
+$inputfile = "yes";
 }}//if font
-if($mode == color){
+if($mode == "color"){
 if($font_sub == ""){
 title("Text Color");
 $var="select.php?mode=color&font_sub=yes&change=$change&color=";
@@ -381,11 +381,11 @@ if("$sameas" !== ""){ $color = $data[$sameas][14]; }
 if($change == globe){ $rb =11; }else{ $rb =14; }
 savedata($rb,$color);
 
-$inputfile = yes;
+$inputfile = "yes";
 }
 }//if color
 
-if($mode == size){
+if($mode == "size"){
 if($size_sub == ""){
 title("Text Size");
 ?>
@@ -414,10 +414,10 @@ if("$sameas" !== ""){ $textsize = $data[$sameas][15]; }
 if($change == globe){ $rb =12; }else{ $rb =15; }
 savedata($rb,$textsize);
 
-$inputfile = yes;
+$inputfile = "yes";
 }}//if mode is size
 
-if($mode == timing){
+if($mode == "timing"){
 if($timing_sub == ""){
 
 function dateset($display,$time){
@@ -495,12 +495,12 @@ if($enddate < time()){ echo "<p>&nbsp;</p><center><font size=2 >The time has alr
  
 }else{
 savedata(10,$enddate);
-$inputfile = yes;
+$inputfile = "yes";
 }}}
-if($mode == textfile){
+if($mode == "textfile"){
 if($textfile_sub == ""){
 $brtxtdata = explode("-",$dbtxtsets);
-if($brtxtdata[0] == ""){ $brtxtdata[0] =alllines; $noset="<br><font color=blue>Default settings set</font>";  } 
+if($brtxtdata[0] == ""){ $brtxtdata[0] ="alllines"; $noset="<br><font color=blue>Default settings set</font>";  } 
 title("Text Settings");
 ?>
 
@@ -516,17 +516,17 @@ title("Text Settings");
       </font> 
       <form action="" method="post" name="form" >
         <p> <font size="2"> 
-          <input name="display" type="radio" value="last"   <?php if($brtxtdata[0] == last){ echo checked; } ?> >
+          <input name="display" type="radio" value="last"   <?php if($brtxtdata[0] == last){ echo "checked"; } ?> >
           Display the last 
           <input name="thisarea1" type="text"  size="3" maxlength="3" value="<?php echo $brtxtdata[1];  ?>">
           lines in the file <br>
-          <input type="radio" name="display" value="onlyline" <?php if($brtxtdata[0] == onlyline){ echo checked; } ?>>
+          <input type="radio" name="display" value="onlyline" <?php if($brtxtdata[0] == onlyline){ echo "checked"; } ?>>
           Display only this line 
           <input name="thisarea2" type="text"" size="3" maxlength="3" value="<?php echo $brtxtdata[1];  ?>">
           <br>
-          <input type="radio" name="display" value="alllines"   <?php if($brtxtdata[0] == alllines){ echo checked; } ?>>
+          <input type="radio" name="display" value="alllines"   <?php if($brtxtdata[0] == alllines){ echo "checked"; } ?>>
           Display all lines<br>
-          <input type="radio" name="display" value="rotate"   <?php if($brtxtdata[0] == rotate){ echo checked; } ?>>
+          <input type="radio" name="display" value="rotate"   <?php if($brtxtdata[0] == rotate){ echo "checked"; } ?>>
           Rotate lines<br>
           <input name="change" type="hidden"  value="<?php echo $change ?>">
           <input name="textfile_sub" type="hidden"  value="yes">
@@ -551,18 +551,18 @@ if($display == "last"){ $thisarea = $thisarea1; }
 if($display == "onlyline"){ $thisarea = $thisarea2; }
 
 if("$sameas" !== ""){ $dtextfi = $data[$sameas][18]; }else{ $dtextfi = "$display-$thisarea-$fade"; }
-if($change == globe){ $rb =13; }else{ $rb =18; }
+if($change == "globe"){ $rb =13; }else{ $rb =18; }
 savedata($rb,$dtextfi);
-$inputfile = yes;
+$inputfile = "yes";
 
 }
 }
-if($mode == shadow){
+if($mode == "shadow"){
 if($sub_shadow == ""){
 
 $shad = explode("&",$dbtxtsetting);
 function if_sel($vu,$val,$what){
-if($what == ""){ $what = selected;  }
+if($what == ""){ $what = "selected";  }
 if($vu == "$val"){ echo $what; }
 }
 
@@ -635,16 +635,16 @@ title("Text Shadow");
 }else{
 
 if("$sameas" !== ""){ $tshad = $data[$sameas][20]; }else{ $tshad = "$direction&$distance&$shcolor"; }
-if($change == globe){ $rb =15; }else{ $rb =20; }
+if($change == "globe"){ $rb =15; }else{ $rb =20; }
 savedata($rb,$tshad);
-$inputfile = yes;
+$inputfile = "yes";
 }
 }
 
-if($mode == checkimages){
+if($mode == "checkimages"){
 echo "<center>Scaned $dbimad file...<br>Results:</center><br><br><font size=2>";
 notes("Below shows what images are good and valid to use <br>with AWDigie in the selected txt file.<br><br>");
-if($change == program){ $dbimad = $data[other][1]; }
+if($change == "program"){ $dbimad = $data["other"][1]; }
 foreach(file("$dbimad") as $line){
 
 if(file_exists(ereg_replace("(\n|\r)", "", $line)) && imagecreatefromjpeg(ereg_replace("(\n|\r)", "", $line))){
@@ -657,7 +657,7 @@ echo "\"$line\" <font color=red>Is Not Valid</font><br>";
 echo "</font><br><center><input  type=button onClick=\"self.close()\" Value=Close></center>";
 }
 
-if($mode == zoom){
+if($mode == "zoom"){
 if($sub_zoom == "" ){
 $brz = explode("&",$dbzoom);
 
@@ -666,7 +666,7 @@ $posx = 0;
 $posy = 0;
 $zoom = 256;
 $rotate = 0;
-$dothis =zin;
+$dothis ="zin";
 $enback='';
 
 }else{
@@ -676,21 +676,21 @@ $posx = $brz[2];
 $posy = $brz[1];
 $zoom = $brz[3];
 $rotate = $brz[0];
-$dothis =zin;
+$dothis ="zin";
 $buse = $brz[4];
 if("$brz[4]" !== ""){ $enback = "yes"; }
 }}
 if($changed == $buse && $enback == $enchanged && $changeddsb == $dontsizeback){
 
-if($dothis == zin){ $zoom = ($zoom + $power);  
+if($dothis == "zin"){ $zoom = ($zoom + $power);  
 }
-if($dothis == zout){ $zoom = ($zoom - $power);  
+if($dothis == "zout"){ $zoom = ($zoom - $power);  
 }
-if($dothis == zpan){ 
+if($dothis == "zpan"){ 
 $posy =$zp_y -($zoom /2); 
 $posx = $zp_x-($zoom /2);
 }
-if($dothis == zro){ 
+if($dothis == "zro"){ 
 $rotate = (128 - $zp_x)+$rotate;
 }
 
@@ -698,11 +698,11 @@ $rotate = (128 - $zp_x)+$rotate;
 if($zoom == 0 ){$zoom = 1;}
 function radio($in){
 global $buse,$enback,$change,$rotate,$brz;
-if("$buse" == "$in"){ $ck = checked;  }else{ $href ="onclick=\"form.submit()\""; }
+if("$buse" == "$in"){ $ck = "checked";  }else{ $href ="onclick=\"form.submit()\""; }
 if("$change" !== "$in" && "$enback" == "yes" && "$rotate" == "0"  ){ echo "<input type=radio name=buse value=$in $href $ds $ck> Use Channel$in<br> \n"; }
 }
 $getsize=@getimagesize($dbaddess);
-$getch=@getimagesize($data[channel.$buse][1]);
+$getch=@getimagesize($data["channel".$buse][1]);
 title("Zoom/Pan");
 ?>
 <table width="448" height="426" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -710,22 +710,22 @@ title("Zoom/Pan");
     <td width="448" height="426">
 <form action="" method="get" name="form" id="form">
      
-        <?php notes("<br>Here you can zoom in, zoom out, pan or rotate.<br>This will only transform the image and not any text or watermarks set.<br>If you zoom out you will notice that there is  black  along sides of<br>the image border, you can replace this black with another channel by clicking <br>on the \"Background Channel\" checkbox and selecting a channel. "); if($data[other][6] !== Show){ echo "<font size=2>Channel settings for zooming and panning.<br> Note zooming in can make things pixlelated</font> "; }  ?>
+        <?php notes("<br>Here you can zoom in, zoom out, pan or rotate.<br>This will only transform the image and not any text or watermarks set.<br>If you zoom out you will notice that there is  black  along sides of<br>the image border, you can replace this black with another channel by clicking <br>on the \"Background Channel\" checkbox and selecting a channel. "); if($data["other"][6] !== "Show"){ echo "<font size=2>Channel settings for zooming and panning.<br> Note zooming in can make things pixlelated</font> "; }  ?>
         <br><br>
         <table width="457" border="0" cellspacing="0" cellpadding="0">
           <tr> 
             <td width="260"><input type="image"  name="zp"  src="<?php echo "zoom.php?im=$dbaddess&zoom=$zoom&posx=$posx&posy=$posy&rotate=$rotate&buse=$buse&dontsizeback=$dontsizeback";   ?>" width="256" height="256"> 
             </td>
             <td width="183"><p> 
-                <input name="enback" type="checkbox"  value="yes"   onclick="form.submit()" <?php if("$enback" == "yes" ){ echo checked; } if("$rotate" !== "0"){ echo disabled; } ?>>
+                <input name="enback" type="checkbox"  value="yes"   onclick="form.submit()" <?php if("$enback" == "yes" ){ echo "checked"; } if("$rotate" !== "0"){ echo "disabled"; } ?>>
                 <font size="2"> Background Channel<br>
                 Checking this will use a background image channel<br>
                 <input name="changed" type="hidden" id="changed" value=<?php echo $buse ?>>
                 <input name="enchanged" type="hidden" id="enchanged" value=<?php echo $enback ?>>
                 <input name="changeddsb" type="hidden" id="changeddsb" value=<?php echo $dontsizeback ?>>
                 <br>
-                <?php if ($enback == yes){ ?>
-                <input name="dontsizeback" type="checkbox" value="yes" onclick="form.submit()" <?php if($dontsizeback == yes){ echo checked; } ?>>
+                <?php if ($enback == "yes"){ ?>
+                <input name="dontsizeback" type="checkbox" value="yes" onclick="form.submit()" <?php if($dontsizeback == "yes"){ echo "checked"; } ?>>
                 Dont Size Background Image 
                 <?php } ?>
                 <br>
@@ -738,7 +738,7 @@ title("Zoom/Pan");
 ?>
                 <br>
                 <br>
-                <?php  if($getch[0] < $getsize[0] && $zoom < 240 && "$enback" == "yes" && "$buse" !== "" && $dontsizeback !== yes){ echo '<font color=red> Images will look blurry<br>(The background image is smaller then the Channel)</font><br>'; }  ?>
+                <?php  if($getch[0] < $getsize[0] && $zoom < 240 && "$enback" == "yes" && "$buse" !== "" && $dontsizeback !== "yes"){ echo '<font color=red> Images will look blurry<br>(The background image is smaller then the Channel)</font><br>'; }  ?>
                 </font></p>
               </td>
           </tr>
@@ -747,24 +747,24 @@ title("Zoom/Pan");
           <tr> 
             <td width="136" height="135"><font size="2">Clicking on image will<br>
               <img src="art/in.jpg" width="17" height="17"></font> 
-              <input type="radio" name="dothis" value="zout" <?php if($dothis == zout){ echo checked; } ?>> 
+              <input type="radio" name="dothis" value="zout" <?php if($dothis == "zout"){ echo "checked"; } ?>> 
               <font size="2">Zoom out<br>
               <img src="art/out.jpg" width="17" height="17" > 
-              <input name="dothis" type="radio" value="zin"  <?php if($dothis == zin){ echo checked; } ?>  >
+              <input name="dothis" type="radio" value="zin"  <?php if($dothis == "zin"){ echo "checked"; } ?>  >
               Zoom in<br>
               <img src="art/pan.gif" width="17" height="17" > 
-              <input name="dothis" type="radio" value="zpan"  <?php if($dothis == zpan){ echo checked; } ?>>
+              <input name="dothis" type="radio" value="zpan"  <?php if($dothis == "zpan"){ echo "checked"; } ?>>
               Pan</font> <br>
               <img src="art/ro.gif" width="17" height="17"><font size="2">
-              <input type="radio" name="dothis" value="zro" <?php if($dothis == zro){ echo checked; } ?>>
+              <input type="radio" name="dothis" value="zro" <?php if($dothis == "zro"){ echo "checked"; } ?>>
               Rotate</font><font size="2"> <br>
               Power Control<br>
               <select name="power" >
-                <option value="22" <?php if($power == 22){ echo selected; } ?> >1</option>
-                <option value="44"  <?php if($power == 44){ echo selected; } ?> >2</option>
-                <option value="68" <?php if($power == 68){ echo selected; } ?> >3</option>
-                <option value="90" <?php if($power == 90){ echo selected; } ?> >4</option>
-                <option value="112" <?php if($power == 112){ echo selected; } ?> >5</option>
+                <option value="22" <?php if($power == 22){ echo "selected"; } ?> >1</option>
+                <option value="44"  <?php if($power == 44){ echo "selected"; } ?> >2</option>
+                <option value="68" <?php if($power == 68){ echo "selected"; } ?> >3</option>
+                <option value="90" <?php if($power == 90){ echo "selected"; } ?> >4</option>
+                <option value="112" <?php if($power == 112){ echo "selected"; } ?> >5</option>
               </select>
               </font> <br>
             </td>
@@ -797,19 +797,19 @@ title("Zoom/Pan");
 if("$sameas" !== ""){ $tzoom = $data[$sameas][21]; }else{ $tzoom = "$rotate&$posy&$posx&$zoom&$buse&$dontsizeback&"; }
 echo "Saving as $buse<br>";
 savedata(21,"$tzoom");
-$inputfile = yes;
+$inputfile = "yes";
 }
 }
-if($mode == record){
+if($mode == "record"){
 
 if($sub_record == "" ){
-$brr = explode("%",$data[settings][11]);
+$brr = explode("%",$data["settings"][11]);
 
  function if_select($mnum,$this){ 
 					 if("$this" == ""){ 
-					 if($mnum == date("n", "")){ echo selected; }   
+					 if($mnum == date("n", "")){ echo "selected"; }   
 					 }else{
-					 if("$this" == "$mnum"){ echo selected;  } }}
+					 if("$this" == "$mnum"){ echo "selected";  } }}
 
 function if_date($let){
 global $brr;
@@ -843,7 +843,7 @@ document.getElementById(id+[i]).innerText=v;
         <table width="264" border="0" cellpadding="0" cellspacing="0" bgcolor="#F4F4F4">
           <tr> 
             <td height="15" colspan="4"><p> 
-                <input name="start_en" type="checkbox"  value="yes" <?php if($brr[1] == yes){ echo checked; } ?>>
+                <input name="start_en" type="checkbox"  value="yes" <?php if($brr[1] == "yes"){ echo "checked"; } ?>>
                 <font size="2"> Start Recording At time <br>
                 Current time 
                 <?php   echo date("m:j:H:i") ?>
@@ -903,7 +903,7 @@ document.getElementById(id+[i]).innerText=v;
 <p> 
   <?php
 }else{
-$brr = explode("%",$data[settings][11]);
+$brr = explode("%",$data["settings"][11]);
 $rec_txt= "txt/rec_".$recordwhat."_".$dir.".txt";
 if(!file_exists($rec_txt)){
 fopen($rec_txt,"a+");
@@ -913,15 +913,15 @@ if(!is_dir("rec/$dir/")  ){
 if((   @mkdir("rec/$dir/", 0777)  ) == FALSE ){ echo "<font color=red>Cant Create The Directory <b>rec/$dir/</b></font> <br>Make sure that <b>rec/</b> has the correct permissions <br><br>"; $dont=np; }
 }
 $startdate = mktime ( $sthour,$stmin , "0", $stmonth , $stday , date("Y") );
-if($startdate < time() && $start_en == "yes"){ echo "<font color=red>The time has already passed </font><br>"; $dont=np; }
+if($startdate < time() && $start_en == "yes"){ echo "<font color=red>The time has already passed </font><br>"; $dont="np"; }
 echo "<br>$startdate<br>".time()."";
 if($dont == ""){
 savedata(11,"$recordwhat%$start_en%$startdate%$with_marks%$to_txt%$stop_after%$dir%$prefex");
-$inputfile = yes;
+$inputfile = "yes";
 }
 }
 }
-if($mode == create_view){
+if($mode == "create_view"){
 title("Create View");
 ?>
 <p align="center"> 
@@ -939,7 +939,7 @@ title("Create View");
 </p> 
 <?php
 }
-if($mode == moni){
+if($mode == "moni"){
 title("Viewing $chn");
 ?>
 <meta http-equiv="refresh" content="<?php  echo $uf ?>">
@@ -949,11 +949,11 @@ title("Viewing $chn");
 </center>
 <?php 
 }
-if($mode == awsettings ){
+if($mode == "awsettings" ){
 if($sub_awsettings ==""){
 title("AWDigie Settings");
-$net = explode("^%",$data[other][8]);
-$gdeset = explode("&",$data[other][9]);
+$net = explode("^%",$data["other"][8]);
+$gdeset = explode("&",$data["other"][9]);
 ?>
 <script language="JavaScript">
 function bytokb(input){ document.form.byte.value=input*1024; }
@@ -996,7 +996,7 @@ function kbtoby(input){ document.form.kb.value=Math.round(input/1024); }
           <tr> 
             <td colspan="2"><div align="center"><strong><a href="http://www.vmist.net/activeworlds/awscripts/awdigie/network.php" target="newnet">Network</a> 
                 Settings</strong><font size="2"> <br>
-                <input name="tognetwork" type="checkbox"  value="yes" <?php if($net[1] == yes){ echo checked; } ?> >
+                <input name="tognetwork" type="checkbox"  value="yes" <?php if($net[1] == "yes"){ echo "checked"; } ?> >
                 Place this station on the AWDigie network.</font></div>
               <font size="2">
                   <?php notes("  <br>
@@ -1036,9 +1036,9 @@ By adding your station to the network all content outputted must be PG or below,
               Email<br>
               <input name="owner" type="text" id="owner" value="<?php echo  stripslashes($net[9])  ?>">
               <br>
-              <input name="rank" type="checkbox" id="rank" value="yes" <?php if($net[10] == yes){ echo checked; } ?> >
+              <input name="rank" type="checkbox" id="rank" value="yes" <?php if($net[10] == "yes"){ echo "checked"; } ?> >
               Allow Ranking<br>
-              <input name="comments" type="checkbox" id="comments" value="yes"<?php if($net[12] == yes){ echo checked; } ?> >
+              <input name="comments" type="checkbox" id="comments" value="yes"<?php if($net[12] == "yes"){ echo "checked"; } ?> >
               Allow Comments</font></td>
           </tr>
         </table>
@@ -1057,16 +1057,16 @@ $discript = stripslashes(str_replace("\r\n", "returnthisline", "$discript"));
   
 }else{
 
-if($netpwork == yes){
+if($netpwork == "yes"){
 
 savedata(8,"$name^%$tognetwork^%$discript^%$path^%$fre^%$thisup^%$views^%$homepage^%$logo^%$owner^%$rank^%$save^%$comments^%");
 }else{
 savedata(9,"$imH&$imW&$imBY");
 }
-$inputfile=yes;
+$inputfile="yes";
 }}
 
-if($mode == layers){
+if($mode == "layers"){
 if("$sub_layers" ==""){
 title("Text Water Mark Layers");
 echo $dbfunction;
@@ -1097,10 +1097,10 @@ echo $dbfunction;
 }else{
 if("$sameas" !== ""){ $tl = $data[$sameas][24]; }else{ $tl = "$order"; }
 savedata(24,$tl);
-$inputfile=yes;
+$inputfile="yes";
 }}
 
-if($inputfile == yes){
+if($inputfile == "yes"){
 $fp = fopen("$datapath","w+");
 foreach($new_file as $line){
 fputs($fp,"$line");
