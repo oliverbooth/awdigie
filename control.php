@@ -7,7 +7,12 @@ $new_file_data = $new_file;
 $brsp = explode("^^",$new_file_data[1]); 
 $v='vmi';$st='st.net'; $wa='aw'; $cu='1';
 
-if("$en_record" == ""){ $en_record = $brsp[12]; }
+$logout = isset($_GET["logout"]) ? $_GET["logout"] : "";
+$logintothisip = isset($_GET["logintothisip"]) ? $_GET["logintothisip"] : "";
+$load_chnsett = isset($_GET["load_chnsett"]) ? $_GET["load_chnsett"] : "";
+$setbody = isset($_GET["setbody"]) ? $_GET["setbody"] : "";
+
+if(!isset($en_record) || "$en_record" == ""){ $en_record = $brsp[12]; }
 
 
 function savedata($linenum,$brnum,$value){
@@ -17,7 +22,7 @@ $brea[$brnum]="$value";
 return $new_file[$linenum] = "". ereg_replace("(\r\n|\n|\r)", "", implode("^^", $brea) ) ."\n";
 }
 
-if($logout){
+if($logout == "true"){
 setcookie('awdigiecookie');
 $logintothisip="ABEA";
 $passvar=false;
@@ -183,7 +188,8 @@ $passvar = true;
 
 $chen_sep =  explode("&",$data["other"][3]);
 
-if($_POST["password_login"]){
+if(isset($_POST["password_login"])){
+$password_login=$_POST["password_login"];
 if(!$password_login)$probs = "<li>AWD Doesnt Support Your Server</li>";
 if(!function_exists('imagettftext'))$probs .='<li>Your Copy of PHP must have the <a href=http://www.freetype.org/>FreeType</a> installed</li>';
 if(!function_exists('imageline'))$probs .='<li>Server must have the <a href=http://www.boutell.com/gd/>GD Library</a> installed</li>';
@@ -333,6 +339,7 @@ function chan_controls($c){
 global $data,$chen_sep;
 $enabled = $chen_sep[$c];
 $chn = "channel".$c;
+$chdis = "";
 
 
  if($data[$chn][22] == "off"){ $w_pv = "on"; }else{ $w_pv = "off"; } 
@@ -794,6 +801,7 @@ if("$c" !== "1" && $data["other"][6] == "Show"){echo '<p>&nbsp;</p><p>&nbsp;</p>
           <a href="#"   onClick="javascript:window.open('select.php?mode=record&change=settings','position','height=450,width=350,status');">Settings</a><br>
           <br>
           <input name="en_record" type="submit" <?php
+      $err="";
 		  $brec = explode("%",$data["settings"][11]);
 		  $rec_txt= "txt/rec_".$brec[0]."_".$brec[6].".txt";
 		  if($brec[1] == "yes" ){ 		  
@@ -806,7 +814,8 @@ if("$c" !== "1" && $data["other"][6] == "Show"){echo '<p>&nbsp;</p><p>&nbsp;</p>
 		  }}
 		   if( $brec[5] < sizeof( @file($rec_txt) ) && ($data["settings"][12] == "Stop Recording" or $clock == "on" )){ 		 
 		  $err = $err."<br> <font color=red>Images has reached its limit of $brec[5]</font> ";
-		  }
+      }
+      $reco="";
            if($data["settings"][12] == "Record Now" ){  echo 'value="Stop Recording"'; $reco="<br><img src=art/still_green.gif width=10 height=10><em>Currently Recording</em>";  }else{  echo 'value="Record Now"';  }  ?>>
           <br>
           <?php echo $err.$reco; ?> </font></strong></p>

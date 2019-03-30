@@ -2,6 +2,9 @@
 # for awdigie 1.1
 include("includes.php");
 $data = connectfile();
+$error = "";
+$dbwateren = isset($_GET["dbwateren"]) ? $_GET["dbwateren"] : "";
+$dbfunction = isset($_GET["dbfunction"]) ? $_GET["dbfunction"] : "";
 
 if($data["mode"][1] == "TD"){ readfile($data["settings"][10]); }else{
 if($data["mode"][1] == "program"){
@@ -115,10 +118,10 @@ if($data["settings"][8] == "yes" && $_COOKIE['awdigiecookie'] == $data["settings
 if($image == "" ){ $image = imagecreate(256,256); imagefilltoborder ($image, 256, 200, 150, ImageColorAllocate($image, 0 , 0 , 0));  }
 imagettftext($image, 6, 0, 5, 10, ImageColorAllocate($image, 255 , 255 , 255), "fonts/DigitaldreamFat.TTF", "ERRORS WHILE PROCESSING TV.PHP\nONLY ADMIN CAN SEE THIS MESSAGE\n\n $error");
 }
-if("$imerror" !== "" && $data["settings"][9] == "yes" &&  $_COOKIE['awdigiecookie'] !== $data["settings"][1] ){ 
+if(isset($imerror) && "$imerror" !== "" && $data["settings"][9] == "yes" &&  $_COOKIE['awdigiecookie'] !== $data["settings"][1] ){ 
 $image= imagecreatefromjpeg($imerror);
 }
-if("$status" == "true"){ echo "<body bgcolor=0 text=white>\n"; if($error){ echo"Station Errors<br>".str_replace("\n", "<img src=art/flash_red.gif>\n<br>", $error);}else{echo"Station is up\n<br>Current Mode <b>".$data["mode"][1]."</b>";}}else{
+if(isset($status) && "$status" == "true"){ echo "<body bgcolor=0 text=white>\n"; if($error){ echo"Station Errors<br>".str_replace("\n", "<img src=art/flash_red.gif>\n<br>", $error);}else{echo"Station is up\n<br>Current Mode <b>".$data["mode"][1]."</b>";}}else{
 header("Content-type: image/jpeg");
 imagejpeg($image,null,'95');
 @imagedestroy($image);
