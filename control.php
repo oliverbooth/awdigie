@@ -330,10 +330,10 @@ echo "
 }
 }
 
-function chan_controls($this){
+function chan_controls($c){
 global $data,$chen_sep;
-$enabled = $chen_sep[$this];
-$chn = "channel".$this;
+$enabled = $chen_sep[$c];
+$chn = "channel".$c;
 
 
  if($data[$chn][22] == "off"){ $w_pv = "on"; }else{ $w_pv = "off"; } 
@@ -350,11 +350,11 @@ echo "Disabled";
  ?></font><br> 
   <table width="193" height="752" border="0" cellpadding="0" cellspacing="3">
     <tr> 
-      <td height="268"><font size="2"> <img src="channels.php?chan=<?php  echo $chn ?>" width="128" height="128" align="left" id=chn<?php  echo $this ?>><a href="#" onClick="javascript:window.open('select.php?uf=10&mode=moni&change=<?php echo $this ?>','win<?php echo $this ?>','height=340,width=330,status');"><img src="art/N.jpg" alt="New Window" width="20" height="20" border=0 ></a> 
+      <td height="268"><font size="2"> <img src="channels.php?chan=<?php  echo $chn ?>" width="128" height="128" align="left" id=chn<?php  echo $c ?>><a href="#" onClick="javascript:window.open('select.php?uf=10&mode=moni&change=<?php echo $c ?>','win<?php echo $c ?>','height=340,width=330,status');"><img src="art/N.jpg" alt="New Window" width="20" height="20" border=0 ></a> 
         <br>
-        <img src="art/A.jpg" alt="Copy Channel Address for Active Worlds in Clipboard" width="20" height="20" onClick="ClipBoard(<?php echo $this ?>,'')"><br>
-        <a href=control.php?setprv=<?php echo $this+1 ?>&value=<?php echo $w_pv ?>><img src="art/S_<?php echo $w_pv ?>.jpg" alt="Turn channel settings <?php echo $w_pv ?> for preview" width="20" height="20" border=0></a><br>
-        <a href="control.php?update_preview=<?php echo  $this+1   ?>&value=<?php echo $w_prevup ?>" ><img src="art/U_<?php echo $w_prevup ?>.jpg" alt="Turn auto update for chanel <?php echo $w_prevup ?>. Note this will only auto update the image" width="20" height="20" border=0></a> 
+        <img src="art/A.jpg" alt="Copy Channel Address for Active Worlds in Clipboard" width="20" height="20" onClick="ClipBoard(<?php echo $c ?>,'')"><br>
+        <a href=control.php?setprv=<?php echo $c+1 ?>&value=<?php echo $w_pv ?>><img src="art/S_<?php echo $w_pv ?>.jpg" alt="Turn channel settings <?php echo $w_pv ?> for preview" width="20" height="20" border=0></a><br>
+        <a href="control.php?update_preview=<?php echo  $c+1   ?>&value=<?php echo $w_prevup ?>" ><img src="art/U_<?php echo $w_prevup ?>.jpg" alt="Turn auto update for chanel <?php echo $w_prevup ?>. Note this will only auto update the image" width="20" height="20" border=0></a> 
         <br>
         <br>
         <br>
@@ -365,7 +365,7 @@ if(eregi(".txt", $data[$chn][1])){
 if( (red("yes", ( file_exists($data[$chn][1]) ),"TXT File Not Valid",$chn,'<br><br><br><br>',"no"))== true){    
 $togimp = "yes";
 
-$togother = '<br><a href="#" onClick="javascript:window.open(\'select.php?mode=checkimages&change='.$this.'\',\'position\',\'height=520,width=500,status\');">Check if images are valid.</a> <br>Rotating '.word( sizeof( file($data[$chn][1])) ,image).'<br>';
+$togother = '<br><a href="#" onClick="javascript:window.open(\'select.php?mode=checkimages&change='.$c.'\',\'position\',\'height=520,width=500,status\');">Check if images are valid.</a> <br>Rotating '.word( sizeof( file($data[$chn][1])) ,image).'<br>';
 } 
 }else{
 if( (red("yes", ( file_exists($data[$chn][1]) ),"Image File Not Valid",$chn,'<br><br><br><br>',"no"))== true){
@@ -377,9 +377,9 @@ if ($data["settings"][4] !== $chn){ echo "<br><center><input type=submit name=li
 $gdeset = explode("&",$data["other"][9]);
 echo $togother;
 ?>
-   <a href="#" onClick="javascript:window.open('select.php?mode=zoom&change=<?php echo $this ?>','position','height=<?php if($data["other"][6] == "Show"){  echo '550'; }else{ echo '490'; }?>,width=500,status');">Zoom/Pan 
+   <a href="#" onClick="javascript:window.open('select.php?mode=zoom&change=<?php echo $c ?>','position','height=<?php if($data["other"][6] == "Show"){  echo '550'; }else{ echo '490'; }?>,width=500,status');">Zoom/Pan 
         Settings </a> <br>
-        <a href="#" onClick="javascript:window.open('select.php?mode=layers&change=<?php echo $this ?>','position','height=350,width=400,status');">Text/Watermark 
+        <a href="#" onClick="javascript:window.open('select.php?mode=layers&change=<?php echo $c ?>','position','height=350,width=400,status');">Text/Watermark 
         Layers</a><br>
 		
 		
@@ -401,49 +401,49 @@ echo $togother;
         </font> <strong>Image</strong><font size="2"> address or </font><font size="2">.TXT</font> 
         <br>
         <?php notes('Enter in an address to an image file. Note: 
-        No Remote Images<br>',"$this") ?> 
-        <input name="<?php echo "chan[$this][address]"; ?>" type="text" value="<?php echo $data[$chn][1];  ?>"  size="25"> 
+        No Remote Images<br>',"$c") ?> 
+        <input name="<?php echo "chan[$c][address]"; ?>" type="text" value="<?php echo $data[$chn][1];  ?>"  size="25"> 
         </td>
     </tr>
     <tr> 
       <td height="71"><div align="center"><strong>Channel Notes</strong> <br>
-          <textarea name="<?php echo "chan[$this][notes]" ?>" ><?php  echo stripslashes(str_replace("returnthisline", "\n", $data[$chn][2])) ?></textarea>
+          <textarea name="<?php echo "chan[$c][notes]" ?>" ><?php  echo stripslashes(str_replace("returnthisline", "\n", $data[$chn][2])) ?></textarea>
         </div></td>
     </tr>
     <tr> 
       <td width="187" height="179" bgcolor="#374553"> <font size="2"> 
-        <input name="<?php echo "chan[$this][texten]" ?>" type="checkbox" id="<?php echo "chan[$this][texten]" ?>"  value="yes" <?php echo checked($data[$chn][3]) ?>>
+        <input name="<?php echo "chan[$c][texten]" ?>" type="checkbox" id="<?php echo "chan[$c][texten]" ?>"  value="yes" <?php echo checked($data[$chn][3]) ?>>
         </font><strong>Text Message</strong><font size="2"><font size="2"> or 
         [.TXT]<br>
         <?php notes('Display a text message on the channel. &quot;[readtext.txt]&quot; 
-        for text file<br>',"$this") ?>
+        for text file<br>',"$c") ?>
         <?php 	      
 		$tfile = str_replace(']','', str_replace('[','',$data[$chn][4]));
 		if( $data[$chn][4][0] == '['){ 
-		if(  red($data[$chn][3],( file_exists($tfile)  )  ,"TXT File Not Valid<br>",$chn,'',"no") == true){  echo  "Reading ".word(sizeof(file($textfile)), "message")." from file $thisfile<br>  <a href=#   onClick=\"javascript:window.open('select.php?mode=textfile&change=$this','position','height=360,width=300,status');\">TXT Settings</a><br>\n"; }
+		if(  red($data[$chn][3],( file_exists($tfile)  )  ,"TXT File Not Valid<br>",$chn,'',"no") == true){  echo  "Reading ".word(sizeof(file($textfile)), "message")." from file $thisfile<br>  <a href=#   onClick=\"javascript:window.open('select.php?mode=textfile&change=$c','position','height=360,width=300,status');\">TXT Settings</a><br>\n"; }
 		}
 		?>
         %T = current time<br>
         %C = Countdown</font><br>
-        <input name="<?php echo "chan[$this][text]" ?>" type="text" value="<?php echo stripslashes($data[$chn][4]) ?>"  size="25">
+        <input name="<?php echo "chan[$c][text]" ?>" type="text" value="<?php echo stripslashes($data[$chn][4]) ?>"  size="25">
         <br>
         <strong><font size="2"> 
-        <input name="<?php echo "chan[$this][texveric]" ?>" type="checkbox"  value="yes" <?php echo checked($data[$chn][16]) ?>>
+        <input name="<?php echo "chan[$c][texveric]" ?>" type="checkbox"  value="yes" <?php echo checked($data[$chn][16]) ?>>
         </font></strong>Vertical<br>
-        <input name="<?php echo "chan[$this][shadow]" ?>" type="checkbox"   value="yes" <?php echo checked($data[$chn][19]) ?>>
-        <a href="#"   onClick="javascript:window.open('select.php?mode=shadow&change=<?php echo $this ?>','position','height=400,width=300,status');">Shadow</a> 
+        <input name="<?php echo "chan[$c][shadow]" ?>" type="checkbox"   value="yes" <?php echo checked($data[$chn][19]) ?>>
+        <a href="#"   onClick="javascript:window.open('select.php?mode=shadow&change=<?php echo $c ?>','position','height=400,width=300,status');">Shadow</a> 
         <?php  if($data[$chn][19] !== ""){ red($data[$chn][3],($data[$chn][20] !== ""),"Not Set",$chn,'',"no");} ?><br>
         
-        <a href="#"   onClick="javascript:window.open('select.php?mode=font&change=<?php echo $this ?>','position','height=350,width=300,status');">Font
+        <a href="#"   onClick="javascript:window.open('select.php?mode=font&change=<?php echo $c ?>','position','height=350,width=300,status');">Font
 		</a> <?php  red($data[$chn][3],($data[$chn][13] !== ""),"Not Set",$chn,'',"no");  echo "<b>".$data[$chn][13]."</b>";  ?><br>
        
-	    <a href="#"   onClick="javascript:window.open('select.php?mode=color&change=<?php echo $this ?>','color','height=350,width=315,status');">
+	    <a href="#"   onClick="javascript:window.open('select.php?mode=color&change=<?php echo $c ?>','color','height=350,width=315,status');">
         Text Color</a> <?php  red($data[$chn][3],($data[$chn][14] !== ""),"Not Set",$chn,'',"no");  echo "<b>".$data[$chn][14]."</b>";  ?><br>
 		
-        <a href="#"   onClick="javascript:window.open('select.php?mode=size&change=<?php echo $this ?>','position','height=400,width=300,status');">Text 
+        <a href="#"   onClick="javascript:window.open('select.php?mode=size&change=<?php echo $c ?>','position','height=400,width=300,status');">Text 
         Size</a> <?php  red($data[$chn][3],($data[$chn][15] !== ""),"Not Set",$chn,'',"no");  echo "<b>".$data[$chn][15]."</b>";  ?><br>
 		
-        <a href="#" onClick="javascript:window.open('select.php?mode=position&change=<?php echo $this ?>','position','height=400,width=300,status');">Text 
+        <a href="#" onClick="javascript:window.open('select.php?mode=position&change=<?php echo $c ?>','position','height=400,width=300,status');">Text 
         Position</a> <?php  		 
 		if( ( red($data[$chn][3],($data[$chn][12] !== ""),"Not Set",$chn,'',"no")) == true){ $yx = explode("-",$data[$chn][12]);  echo "<b>$yx[0]</b> X <b>$yx[1]</b>"; }  ?>
         </font></td>
@@ -453,18 +453,18 @@ echo $togother;
         <br>
        <?php 
 	    notes('Enter in the amount of time in seconds to count down to. <br>
-        The clock will begin as soon as you press the set button.<br>',"$this") ?>
-        <input name="<?php echo "chan[$this][atsec]" ?>" type="text" value="<?php  $btt = explode("-",$data[$chn][5]);  echo $btt[0];  ?>" size="20">
+        The clock will begin as soon as you press the set button.<br>',"$c") ?>
+        <input name="<?php echo "chan[$c][atsec]" ?>" type="text" value="<?php  $btt = explode("-",$data[$chn][5]);  echo $btt[0];  ?>" size="20">
         <br>
         <?php if("$btt[0]" !== ""){  if(( ($btt[1] + $btt[0]) - time()) <0){ echo "Time is up on countdown"; }else{  echo countdown($chn)." Left"; }} ?>
         </font></td>
     </tr>
     <tr> 
       <td height="65" bgcolor="#1A1B4A">
-        <input name="<?php echo "chan[$this][wateren]" ?>" type="checkbox" title='Enable Watermark' value="yes" <?php echo checked($data[$chn][7]) ?>>
+        <input name="<?php echo "chan[$c][wateren]" ?>" type="checkbox" title='Enable Watermark' value="yes" <?php echo checked($data[$chn][7]) ?>>
         <strong>Watermark</strong><font size="2"> or .TXT</font><font size="2"> 
         <br>
-       <?php  notes('Put a PNG image on top <br> of this channel.<br>',"$this");
+       <?php  notes('Put a PNG image on top <br> of this channel.<br>',"$c");
 if(eregi(".txt", $data[$chn][8])){
 if( (red( $data[$chn][7] , ( file_exists($data[$chn][8] )) ,"TXT File Not Valid",$chn,'',"no"))== true){    
 $togimp = "yes";
@@ -474,10 +474,10 @@ red(  $data[$chn][7]  ,(file_exists($data[$chn][8] )),"PNG File Not Valid",$chn,
 
 }
  ?>
-        <input name="<?php echo "chan[$this][water]" ?>" type="text" value="<?php echo $data[$chn][8] ?>"  size="20">
+        <input name="<?php echo "chan[$c][water]" ?>" type="text" value="<?php echo $data[$chn][8] ?>"  size="20">
         </font> <br>
         <font size="2"> 
-        <select name="<?php echo "chan[$this][water_pos]" ?>" size="1" >
+        <select name="<?php echo "chan[$c][water_pos]" ?>" size="1" >
           <option value="TopRight" <?php if($data[$chn][17] == "TopRight"){ echo "selected"; } ?>  >Top 
           Right</option>
           <option value="TopLeft"  <?php if($data[$chn][17] == "TopLeft"){ echo "selected"; } ?>>Top 
@@ -491,10 +491,10 @@ red(  $data[$chn][7]  ,(file_exists($data[$chn][8] )),"PNG File Not Valid",$chn,
     </tr>
     <tr> 
       <td height="37" bgcolor="#1E1717"><strong><font size="2"> 
-        <input name="<?php echo "chan[$this][timeen]"; ?>" type="checkbox" title='Enable Timing' value="yes" <?php echo checked($data[$chn][9]) ?>>
+        <input name="<?php echo "chan[$c][timeen]"; ?>" type="checkbox" title='Enable Timing' value="yes" <?php echo checked($data[$chn][9]) ?>>
         </font>Channel Timing</strong><font size="2"><br>
-        <?php  notes('Have this channel show<br>at a particular date and time.<br>',"$this") ?>
-        <a href="#"   onClick="javascript:window.open('select.php?mode=timing&change=<?php echo $this ?>','position','height=300,width=340,status');">Settings</a> 
+        <?php  notes('Have this channel show<br>at a particular date and time.<br>',"$c") ?>
+        <a href="#"   onClick="javascript:window.open('select.php?mode=timing&change=<?php echo $c ?>','position','height=300,width=340,status');">Settings</a> 
        
         <?php if($data[$chn][10] == ""){  
 	    
@@ -523,7 +523,7 @@ red(  $data[$chn][7]  ,(file_exists($data[$chn][8] )),"PNG File Not Valid",$chn,
 </center>
 
 <?php
-if("$this" !== "1" && $data["other"][6] == "Show"){echo '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';}
+if("$c" !== "1" && $data["other"][6] == "Show"){echo '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';}
 }
 ?>
 <input name="holdtext" type="hidden">
