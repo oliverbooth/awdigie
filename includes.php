@@ -9,7 +9,7 @@ $brset = explode("^^",$new_file[1]);
 $i=0;
 foreach(file("$datapath") as $line){
 $br = explode("^^",$line); 
-$i=min($i, count($bren));
+$i=min($i, count($bren) - 1);
 $i=max($i, 1);
 
 if($bren[($i-1)] == "chan_enabled" or $br[0][0] !== "c"){
