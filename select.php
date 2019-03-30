@@ -1,4 +1,4 @@
-<?
+<?php
 $datapath= "art/database.php";
 $new_file = file($datapath);
 
@@ -57,13 +57,13 @@ if("$change" !== "globe"){
       </td>
     </tr>
     <tr>  
-  <? if("$change" !== "1"){ ?>   <td width="29" bgcolor="#F5F5F5"><font size="2"><strong>1 <br> <input type="radio" name="sameas" value="channel1" onclick="document.form.submit()"></strong></font></td> <? }?>
-    <?  if("$change" !== "2"){ ?>    <td width="28"><font size="2"><strong> 2 <br><input type="radio" name="sameas" value="channel2" onclick="document.form.submit()"> </strong></font></td> <? }?>
-  <?  if("$change" !== "3"){ ?>      <td width="27" bgcolor="#F5F5F5"><font size="2"><strong>3 <br> <input type="radio" name="sameas" value="channel3" onclick="document.form.submit()"> </strong></font></td> <? }?>
-  <?  if("$change" !== "4"){ ?>      <td width="35"><font size="2"><strong>4 <br> <input type="radio" name="sameas" value="channel4" onclick="document.form.submit()"> </strong></font></td> <? }?>
+  <?php if("$change" !== "1"){ ?>   <td width="29" bgcolor="#F5F5F5"><font size="2"><strong>1 <br> <input type="radio" name="sameas" value="channel1" onclick="document.form.submit()"></strong></font></td> <?php }?>
+    <?php  if("$change" !== "2"){ ?>    <td width="28"><font size="2"><strong> 2 <br><input type="radio" name="sameas" value="channel2" onclick="document.form.submit()"> </strong></font></td> <?php }?>
+  <?php  if("$change" !== "3"){ ?>      <td width="27" bgcolor="#F5F5F5"><font size="2"><strong>3 <br> <input type="radio" name="sameas" value="channel3" onclick="document.form.submit()"> </strong></font></td> <?php }?>
+  <?php  if("$change" !== "4"){ ?>      <td width="35"><font size="2"><strong>4 <br> <input type="radio" name="sameas" value="channel4" onclick="document.form.submit()"> </strong></font></td> <?php }?>
     </tr>
   </table>
-<? }}
+<?php }}
 
 if ($mode == position){
 if("$pos_sub" == ""){
@@ -73,15 +73,15 @@ title("Position Text");
 <form action="" method="get" name="form" >
   <div align="center"><font size="2">Click on the image to select where<br>
     the top left corner of the text should go.</font><br>
-    <input type="image"  src="<?  if($change == globe){ echo "awdigie_logo.jpg";  }else{   echo   $dbaddess;  } ?>" name="d">
-    <input name="change" type="hidden"  value="<? echo $change ?>">
+    <input type="image"  src="<?php  if($change == globe){ echo "awdigie_logo.jpg";  }else{   echo   $dbaddess;  } ?>" name="d">
+    <input name="change" type="hidden"  value="<?php echo $change ?>">
     <input name="pos_sub" type="hidden"  value="yes">
-    <input name="mode" type="hidden"   value="<? echo $mode ?>">
+    <input name="mode" type="hidden"   value="<?php echo $mode ?>">
     <br>
-    <? sameas() ?>
+    <?php sameas() ?>
   </div>
 </form>
-<?
+<?php
 }else{
 
 if("$sameas" == ""){ $vals = "".$d_x."-".$d_y.""; }else{ $vals = $data[$sameas][12]; }
@@ -98,9 +98,9 @@ title("Text Font");
 ?>
 
 <form name="form" method="post" action="">
-  <center><font size="2">Select a font to use for Text <br><? notes("<br></center>TTF Type fonts are used, they are stored in the folder \"fonts\". 3 sample fonts are included in awdigie.<br> <br><center>") ?>
+  <center><font size="2">Select a font to use for Text <br><?php notes("<br></center>TTF Type fonts are used, they are stored in the folder \"fonts\". 3 sample fonts are included in awdigie.<br> <br><center>") ?>
     <select name="font" size="5" id="font" onChange="document.form.font_img.src=('font_preview.php?font=' +  this.options[this.selectedIndex].value )" >
-      <?
+      <?php
   
 $dh = opendir("fonts");
 while (false !== ($filename = readdir($dh))) {
@@ -111,19 +111,19 @@ echo "<option value=\"$filename\" ";  if( $dbfont == $filename){ echo selected; 
   ?>
     </select>
     <br>
-    <img src="http://profile.vmist.net/font_preview.php?font=<? echo $dbfont ?>" name="font_img" > 
+    <img src="http://profile.vmist.net/font_preview.php?font=<?php echo $dbfont ?>" name="font_img" > 
     <br>
     <input type="submit" value="Select Font">
-    <input name="change" type="hidden"  value="<? echo $change ?>">
+    <input name="change" type="hidden"  value="<?php echo $change ?>">
     <input name="font_sub" type="hidden"   value="yes">
-    <input name="mode2" type="hidden"   value="<? echo $mode ?>">
+    <input name="mode2" type="hidden"   value="<?php echo $mode ?>">
     <br>
     <br>
-    <? sameas() ?>
+    <?php sameas() ?>
     </font> </center>
 </form>
 
-<?
+<?php
 }else{
 
 if("$sameas" !== ""){ $font = $data[$sameas][13]; }
@@ -393,21 +393,21 @@ title("Text Size");
   <div align="center">
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <? echo $size_sub ?> 
+    <?php echo $size_sub ?> 
     <p><font size="2">Input a number that will be used for the text size.<br>
       20 is recommended. <br>
-      <input name="textsize" type="text"  size="3" maxlength="3" value="<? echo $dbtextsize ?>">
-      <input name="change" type="hidden"   value="<? echo $change ?>">
+      <input name="textsize" type="text"  size="3" maxlength="3" value="<?php echo $dbtextsize ?>">
+      <input name="change" type="hidden"   value="<?php echo $change ?>">
       <input name="size_sub" type="hidden"  value="yes">
       <input name="mode" type="hidden"  value="size">
       <br>
       <input type="submit" value="Select Size">
       <br>
-      <? sameas() ?>
+      <?php sameas() ?>
       </font></p>
   </div>
 </form>
-<?
+<?php
 }else{
 
 if("$sameas" !== ""){ $textsize = $data[$sameas][15]; }
@@ -426,17 +426,17 @@ if($time == ""){ $time = time(); }
 return date("$display",$time);
 }
 ?>
-<? title("Timing Settings") ?>
+<?php title("Timing Settings") ?>
 <table width="291" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="291" height="279">
       <form action="" method="post" name="form" >
-       <font size="2">At this time, show <? echo $chn ?>.    
+       <font size="2">At this time, show <?php echo $chn ?>.    
           <br> 
           Current time 
-          <?   echo date("Y : m : H : i : s") ?>
+          <?php   echo date("Y : m : H : i : s") ?>
 
-         <? if($dbttmmee < time()){ echo "<br><font color=blue><br>The current time is set below</font>"; $datatt=time(); }else{ $datatt=$dbttmmee; }  ?> </font>
+         <?php if($dbttmmee < time()){ echo "<br><font color=blue><br>The current time is set below</font>"; $datatt=time(); }else{ $datatt=$dbttmmee; }  ?> </font>
         <table width="288" border="0" cellpadding="0" cellspacing="0" bgcolor="#F4F4F4">
           <tr> 
             <td height="30"><div align="center"><font color="#CC0000" size="2"> 
@@ -450,30 +450,30 @@ return date("$display",$time);
           </tr>
           <tr> 
             <td height="22"><div align="center"><font size="2"> 
-                <input name="year" type="text" value="<? echo dateset("Y",$datatt); ?>" size="4" >
+                <input name="year" type="text" value="<?php echo dateset("Y",$datatt); ?>" size="4" >
                 </font></div></td>
             <td><div align="center"><font size="2"> 
-                <input name="month" type="text" value="<? echo dateset("m",$datatt); ?>" size="2" >
+                <input name="month" type="text" value="<?php echo dateset("m",$datatt); ?>" size="2" >
                 </font></div></td>
             <td><div align="center"><font size="2"> 
-                <input name="day" type="text"  value="<? echo dateset("j",$datatt); ?>" size="2" >
+                <input name="day" type="text"  value="<?php echo dateset("j",$datatt); ?>" size="2" >
                 </font></div></td>
             <td><div align="center"><font size="2"> 
-                <input name="hour" type="text"  value="<? echo dateset("H",$datatt); ?>" size="2" >
+                <input name="hour" type="text"  value="<?php echo dateset("H",$datatt); ?>" size="2" >
                 </font></div></td>
             <td><div align="center"><font size="2"> 
-                <input name="minute" type="text"  value="<? echo dateset("i",$datatt); ?>" size="2" >
+                <input name="minute" type="text"  value="<?php echo dateset("i",$datatt); ?>" size="2" >
                 </font></div></td>
             <td><div align="center"><font size="2"> 
-                <input name="second" type="text"  value="<? echo dateset("s",$datatt); ?>" size="2" >
+                <input name="second" type="text"  value="<?php echo dateset("s",$datatt); ?>" size="2" >
                 </font></div></td>
           </tr>
         </table>
         <font size="2"><br>
-       <? notes(" Note: You will have to be in live mode for the timer to work. Also remeber 
+       <?php notes(" Note: You will have to be in live mode for the timer to work. Also remeber 
         to check the Enable Timing<br>") ?>
         <center> 
-          <input name="change" type="hidden" value="<? echo $change ?>">
+          <input name="change" type="hidden" value="<?php echo $change ?>">
           <input name="timing_sub" type="hidden"  value="yes">
           <input name="mode" type="hidden"   value="timing">
           <br>
@@ -487,7 +487,7 @@ return date("$display",$time);
 </table>
  
   
-<?
+<?php
 
 }else{
 $enddate = mktime ( $hour,$minute , $second , $month , $day , $year );
@@ -508,27 +508,27 @@ title("Text Settings");
   <tr> 
     <td width="261" height="200"><font size="2"> 
       <center>
-        <? echo $noset ?> 
+        <?php echo $noset ?> 
       </center>
       <br>
-      <? notes("When reading text messages off of a text file, there are several options that you can set to display how the text is displayed on the channel.")  ?>
+      <?php notes("When reading text messages off of a text file, there are several options that you can set to display how the text is displayed on the channel.")  ?>
       <br>
       </font> 
       <form action="" method="post" name="form" >
         <p> <font size="2"> 
-          <input name="display" type="radio" value="last"   <? if($brtxtdata[0] == last){ echo checked; } ?> >
+          <input name="display" type="radio" value="last"   <?php if($brtxtdata[0] == last){ echo checked; } ?> >
           Display the last 
-          <input name="thisarea1" type="text"  size="3" maxlength="3" value="<? echo $brtxtdata[1];  ?>">
+          <input name="thisarea1" type="text"  size="3" maxlength="3" value="<?php echo $brtxtdata[1];  ?>">
           lines in the file <br>
-          <input type="radio" name="display" value="onlyline" <? if($brtxtdata[0] == onlyline){ echo checked; } ?>>
+          <input type="radio" name="display" value="onlyline" <?php if($brtxtdata[0] == onlyline){ echo checked; } ?>>
           Display only this line 
-          <input name="thisarea2" type="text"" size="3" maxlength="3" value="<? echo $brtxtdata[1];  ?>">
+          <input name="thisarea2" type="text"" size="3" maxlength="3" value="<?php echo $brtxtdata[1];  ?>">
           <br>
-          <input type="radio" name="display" value="alllines"   <? if($brtxtdata[0] == alllines){ echo checked; } ?>>
+          <input type="radio" name="display" value="alllines"   <?php if($brtxtdata[0] == alllines){ echo checked; } ?>>
           Display all lines<br>
-          <input type="radio" name="display" value="rotate"   <? if($brtxtdata[0] == rotate){ echo checked; } ?>>
+          <input type="radio" name="display" value="rotate"   <?php if($brtxtdata[0] == rotate){ echo checked; } ?>>
           Rotate lines<br>
-          <input name="change" type="hidden"  value="<? echo $change ?>">
+          <input name="change" type="hidden"  value="<?php echo $change ?>">
           <input name="textfile_sub" type="hidden"  value="yes">
           <input name="mode" type="hidden"    value="textfile">
           </font> 
@@ -536,7 +536,7 @@ title("Text Settings");
             <input type="submit"  value="Submit">
             <br>
             <br>
-            <? sameas() ?>
+            <?php sameas() ?>
           </center>
         </p>
       </form>
@@ -544,7 +544,7 @@ title("Text Settings");
     </td>
   </tr>
 </table> 
-<?
+<?php
 }else{
 
 if($display == "last"){ $thisarea = $thisarea1; }
@@ -573,22 +573,22 @@ title("Text Shadow");
   <tr> 
     <td width="261" height="156"><center>
         <form action="" method="post" name="form" >
-          <input name="change" type="hidden"    value="<? echo $change ?>">
+          <input name="change" type="hidden"    value="<?php echo $change ?>">
           <input name="sub_shadow" type="hidden" value="yes">
           <input name="mode" type="hidden"      value="shadow">
           <br>
           <font size="2">Direction of shadow<br>
           Up Left 
-          <input name="direction" type="radio" value="-x-"  <? if_sel($shad[0],"-x-",checked)  ?>>
+          <input name="direction" type="radio" value="-x-"  <?php if_sel($shad[0],"-x-",checked)  ?>>
           <img src="art/-x-.jpg" width="60" height="25" ><br>
           Down Left 
-          <input type="radio" name="direction" value="-x+" <? if_sel($shad[0],"-x+",checked)  ?>>
+          <input type="radio" name="direction" value="-x+" <?php if_sel($shad[0],"-x+",checked)  ?>>
           <img src="art/-x%2B.jpg" width="60" height="25" ><br>
           Down Right 
-          <input type="radio" name="direction" value="+x+" <? if_sel($shad[0],"+x+",checked)  ?>>
+          <input type="radio" name="direction" value="+x+" <?php if_sel($shad[0],"+x+",checked)  ?>>
           <img src="art/%2Bx%2B.jpg" width="60" height="25" ><br>
           Up Right 
-          <input type="radio" name="direction" value="+x-" <? if_sel($shad[0],"+x-",checked)  ?>>
+          <input type="radio" name="direction" value="+x-" <?php if_sel($shad[0],"+x-",checked)  ?>>
           <img src="art/%2Bx-.jpg" ></font> <br>
           <br>
           <table width="214" border="0" cellspacing="0" cellpadding="0">
@@ -596,25 +596,25 @@ title("Text Shadow");
               <td width="101" height="53"><font size="2">Shadow <br>
                 Distance<br>
                 <select name="distance" >
-                  <option value="1" <? if_sel($shad[1],"1",'')  ?>>1 Pixel</option>
-                  <option value="2" <? if_sel($shad[1],"2",'')  ?>>2 Pixels</option>
-                  <option value="3" <? if_sel($shad[1],"3",'')  ?>>3 Pixels</option>
-                  <option value="4" <? if_sel($shad[1],"4",'')  ?>>4 Pixels</option>
-                  <option value="5" <? if_sel($shad[1],"5",'')  ?>>5 Pixels</option>
+                  <option value="1" <?php if_sel($shad[1],"1",'')  ?>>1 Pixel</option>
+                  <option value="2" <?php if_sel($shad[1],"2",'')  ?>>2 Pixels</option>
+                  <option value="3" <?php if_sel($shad[1],"3",'')  ?>>3 Pixels</option>
+                  <option value="4" <?php if_sel($shad[1],"4",'')  ?>>4 Pixels</option>
+                  <option value="5" <?php if_sel($shad[1],"5",'')  ?>>5 Pixels</option>
                 </select>
                 </font></td>
               <td width="113">
 <p><font size="2">Shadow Color<br>
                   <select name="shcolor" size="2" >
-                    <option value="255_255_255"  <? if_sel($shad[2],"255_255_255",'')  ?>>White</option>
-                    <option value="0_0_0" <? if_sel($shad[2],"0_0_0",'')  ?>>Black</option>
-                    <option value="255_0_0" <? if_sel($shad[2],"255_0_0",'')  ?>>Red</option>
-                    <option value="0_0_255" <? if_sel($shad[2],"0_0_255",'')  ?>>Blue</option>
-                    <option value="255_255_0" <? if_sel($shad[2],"255_255_0",'')  ?>>Yellow</option>
-                    <option value="0_0_255" <? if_sel($shad[2],"0_0_255",'')  ?>>Green</option>
-                    <option value="255 _204_51" <? if_sel($shad[2],"255 _204_51",'')  ?>>Orange 
+                    <option value="255_255_255"  <?php if_sel($shad[2],"255_255_255",'')  ?>>White</option>
+                    <option value="0_0_0" <?php if_sel($shad[2],"0_0_0",'')  ?>>Black</option>
+                    <option value="255_0_0" <?php if_sel($shad[2],"255_0_0",'')  ?>>Red</option>
+                    <option value="0_0_255" <?php if_sel($shad[2],"0_0_255",'')  ?>>Blue</option>
+                    <option value="255_255_0" <?php if_sel($shad[2],"255_255_0",'')  ?>>Yellow</option>
+                    <option value="0_0_255" <?php if_sel($shad[2],"0_0_255",'')  ?>>Green</option>
+                    <option value="255 _204_51" <?php if_sel($shad[2],"255 _204_51",'')  ?>>Orange 
                     </option>
-                    <option value="153 _153 _153" <? if_sel($shad[2],"153 _153 _153",'')  ?>>Grey</option>
+                    <option value="153 _153 _153" <?php if_sel($shad[2],"153 _153 _153",'')  ?>>Grey</option>
                   </select>
                   </font></p></td>
             </tr>
@@ -622,7 +622,7 @@ title("Text Shadow");
           <br>
           <input name="submit" type="submit"  value="Submit">
           <p>
-            <? sameas() ?>
+            <?php sameas() ?>
           </p>
         </form>
       </center>
@@ -630,7 +630,7 @@ title("Text Shadow");
   </tr>
 </table>
 
-<?
+<?php
 
 }else{
 
@@ -710,27 +710,27 @@ title("Zoom/Pan");
     <td width="448" height="426">
 <form action="" method="get" name="form" id="form">
      
-        <? notes("<br>Here you can zoom in, zoom out, pan or rotate.<br>This will only transform the image and not any text or watermarks set.<br>If you zoom out you will notice that there is  black  along sides of<br>the image border, you can replace this black with another channel by clicking <br>on the \"Background Channel\" checkbox and selecting a channel. "); if($data[other][6] !== Show){ echo "<font size=2>Channel settings for zooming and panning.<br> Note zooming in can make things pixlelated</font> "; }  ?>
+        <?php notes("<br>Here you can zoom in, zoom out, pan or rotate.<br>This will only transform the image and not any text or watermarks set.<br>If you zoom out you will notice that there is  black  along sides of<br>the image border, you can replace this black with another channel by clicking <br>on the \"Background Channel\" checkbox and selecting a channel. "); if($data[other][6] !== Show){ echo "<font size=2>Channel settings for zooming and panning.<br> Note zooming in can make things pixlelated</font> "; }  ?>
         <br><br>
         <table width="457" border="0" cellspacing="0" cellpadding="0">
           <tr> 
-            <td width="260"><input type="image"  name="zp"  src="<? echo "zoom.php?im=$dbaddess&zoom=$zoom&posx=$posx&posy=$posy&rotate=$rotate&buse=$buse&dontsizeback=$dontsizeback";   ?>" width="256" height="256"> 
+            <td width="260"><input type="image"  name="zp"  src="<?php echo "zoom.php?im=$dbaddess&zoom=$zoom&posx=$posx&posy=$posy&rotate=$rotate&buse=$buse&dontsizeback=$dontsizeback";   ?>" width="256" height="256"> 
             </td>
             <td width="183"><p> 
-                <input name="enback" type="checkbox"  value="yes"   onclick="form.submit()" <? if("$enback" == "yes" ){ echo checked; } if("$rotate" !== "0"){ echo disabled; } ?>>
+                <input name="enback" type="checkbox"  value="yes"   onclick="form.submit()" <?php if("$enback" == "yes" ){ echo checked; } if("$rotate" !== "0"){ echo disabled; } ?>>
                 <font size="2"> Background Channel<br>
                 Checking this will use a background image channel<br>
-                <input name="changed" type="hidden" id="changed" value=<? echo $buse ?>>
-                <input name="enchanged" type="hidden" id="enchanged" value=<? echo $enback ?>>
-                <input name="changeddsb" type="hidden" id="changeddsb" value=<? echo $dontsizeback ?>>
+                <input name="changed" type="hidden" id="changed" value=<?php echo $buse ?>>
+                <input name="enchanged" type="hidden" id="enchanged" value=<?php echo $enback ?>>
+                <input name="changeddsb" type="hidden" id="changeddsb" value=<?php echo $dontsizeback ?>>
                 <br>
-                <? if ($enback == yes){ ?>
-                <input name="dontsizeback" type="checkbox" value="yes" onclick="form.submit()" <? if($dontsizeback == yes){ echo checked; } ?>>
+                <?php if ($enback == yes){ ?>
+                <input name="dontsizeback" type="checkbox" value="yes" onclick="form.submit()" <?php if($dontsizeback == yes){ echo checked; } ?>>
                 Dont Size Background Image 
-                <? } ?>
+                <?php } ?>
                 <br>
                 <br>
-                <? 
+                <?php 
 				radio(1);
 				radio(2);
 				radio(3);
@@ -738,7 +738,7 @@ title("Zoom/Pan");
 ?>
                 <br>
                 <br>
-                <?  if($getch[0] < $getsize[0] && $zoom < 240 && "$enback" == "yes" && "$buse" !== "" && $dontsizeback !== yes){ echo '<font color=red> Images will look blurry<br>(The background image is smaller then the Channel)</font><br>'; }  ?>
+                <?php  if($getch[0] < $getsize[0] && $zoom < 240 && "$enback" == "yes" && "$buse" !== "" && $dontsizeback !== yes){ echo '<font color=red> Images will look blurry<br>(The background image is smaller then the Channel)</font><br>'; }  ?>
                 </font></p>
               </td>
           </tr>
@@ -747,40 +747,40 @@ title("Zoom/Pan");
           <tr> 
             <td width="136" height="135"><font size="2">Clicking on image will<br>
               <img src="art/in.jpg" width="17" height="17"></font> 
-              <input type="radio" name="dothis" value="zout" <? if($dothis == zout){ echo checked; } ?>> 
+              <input type="radio" name="dothis" value="zout" <?php if($dothis == zout){ echo checked; } ?>> 
               <font size="2">Zoom out<br>
               <img src="art/out.jpg" width="17" height="17" > 
-              <input name="dothis" type="radio" value="zin"  <? if($dothis == zin){ echo checked; } ?>  >
+              <input name="dothis" type="radio" value="zin"  <?php if($dothis == zin){ echo checked; } ?>  >
               Zoom in<br>
               <img src="art/pan.gif" width="17" height="17" > 
-              <input name="dothis" type="radio" value="zpan"  <? if($dothis == zpan){ echo checked; } ?>>
+              <input name="dothis" type="radio" value="zpan"  <?php if($dothis == zpan){ echo checked; } ?>>
               Pan</font> <br>
               <img src="art/ro.gif" width="17" height="17"><font size="2">
-              <input type="radio" name="dothis" value="zro" <? if($dothis == zro){ echo checked; } ?>>
+              <input type="radio" name="dothis" value="zro" <?php if($dothis == zro){ echo checked; } ?>>
               Rotate</font><font size="2"> <br>
               Power Control<br>
               <select name="power" >
-                <option value="22" <? if($power == 22){ echo selected; } ?> >1</option>
-                <option value="44"  <? if($power == 44){ echo selected; } ?> >2</option>
-                <option value="68" <? if($power == 68){ echo selected; } ?> >3</option>
-                <option value="90" <? if($power == 90){ echo selected; } ?> >4</option>
-                <option value="112" <? if($power == 112){ echo selected; } ?> >5</option>
+                <option value="22" <?php if($power == 22){ echo selected; } ?> >1</option>
+                <option value="44"  <?php if($power == 44){ echo selected; } ?> >2</option>
+                <option value="68" <?php if($power == 68){ echo selected; } ?> >3</option>
+                <option value="90" <?php if($power == 90){ echo selected; } ?> >4</option>
+                <option value="112" <?php if($power == 112){ echo selected; } ?> >5</option>
               </select>
               </font> <br>
             </td>
             <td width="316"><div align="right"><font size="2">Click the &quot;To 
                 Channel&quot; button <br>
                 to save zoom/pan<br>
-                <input name="rotate" type="hidden"  value="<? echo $rotate ?>" >
-                <input name="change" type="hidden" value="<? echo $change ?>" >
-                <input name="posy" type="hidden"  value="<? echo $posy ?>">
-                <input name="posx" type="hidden" value="<? echo $posx ?>">
-                <input name="zoom" type="hidden"  value="<? echo $zoom ?>">
+                <input name="rotate" type="hidden"  value="<?php echo $rotate ?>" >
+                <input name="change" type="hidden" value="<?php echo $change ?>" >
+                <input name="posy" type="hidden"  value="<?php echo $posy ?>">
+                <input name="posx" type="hidden" value="<?php echo $posx ?>">
+                <input name="zoom" type="hidden"  value="<?php echo $zoom ?>">
                 <input name="mode" type="hidden" value="zoom">
                 <input name="sub_zoom" type="submit"  value="To Channel">
                 <br>
                 <br>
-                <? echo "<a href=\"select.php?change=$change&mode=zoom&reset=reset\">Reset</a>"; ?> 
+                <?php echo "<a href=\"select.php?change=$change&mode=zoom&reset=reset\">Reset</a>"; ?> 
                 </font></div></td>
           </tr>
         </table>
@@ -791,7 +791,7 @@ title("Zoom/Pan");
 </table>
 
   
-<?
+<?php
 }else{
 
 if("$sameas" !== ""){ $tzoom = $data[$sameas][21]; }else{ $tzoom = "$rotate&$posy&$posx&$zoom&$buse&$dontsizeback&"; }
@@ -843,10 +843,10 @@ document.getElementById(id+[i]).innerText=v;
         <table width="264" border="0" cellpadding="0" cellspacing="0" bgcolor="#F4F4F4">
           <tr> 
             <td height="15" colspan="4"><p> 
-                <input name="start_en" type="checkbox"  value="yes" <? if($brr[1] == yes){ echo checked; } ?>>
+                <input name="start_en" type="checkbox"  value="yes" <?php if($brr[1] == yes){ echo checked; } ?>>
                 <font size="2"> Start Recording At time <br>
                 Current time 
-                <?   echo date("m:j:H:i") ?>
+                <?php   echo date("m:j:H:i") ?>
                 <br>
                 </font> </p></td>
           </tr>
@@ -854,44 +854,44 @@ document.getElementById(id+[i]).innerText=v;
             <td width="74" height="52"><p align="center"><font color="#CC0000" size="2"> 
                 Month<br>
               (1 - 12)<br></font>
-                <input name="stmonth" type="text"  value="<? echo if_date("m"); ?>" size="2" >
+                <input name="stmonth" type="text"  value="<?php echo if_date("m"); ?>" size="2" >
                 <font color="#CC0000" size="2"> </font></p></td>
             <td width="42"><div align="center"><font color="#CC0000" size="2">Day</font><br>
-                <input name="stday" type="text" value="<? echo if_date("j"); ?>"   size="2" maxlength="2">
+                <input name="stday" type="text" value="<?php echo if_date("j"); ?>"   size="2" maxlength="2">
                 </div></td>
             <td width="59">
               <center>
                 <font color="#CC0000" size="2">Hour(24)</font> <br>
                 
-                <input name="sthour" type="text"  value="<? echo if_date("H"); ?>"   size="2" maxlength="2">
+                <input name="sthour" type="text"  value="<?php echo if_date("H"); ?>"   size="2" maxlength="2">
               
               </center>
              </td>
             <td width="69"> <center>
                <font color="#CC0000" size="2">Minute</font><br>
                  
-                <input name="stmin" type="text"  value="<? echo if_date("i"); ?>"     size="2" maxlength="2">
+                <input name="stmin" type="text"  value="<?php echo if_date("i"); ?>"     size="2" maxlength="2">
                 </font></center></td>
           </tr>
         </table>
         <font size="2"><br>
         Stop after 
-        <input name="stop_after" type="text"  size="4" value="<? echo $brr[5]  ?>" >
+        <input name="stop_after" type="text"  size="4" value="<?php echo $brr[5]  ?>" >
         Images <br>
         <br>
         Images will be saved as <strong> :<br>
-        rec/<a id=wdir0><? echo $brr[6] ?></a>/<a id=what0><? echo $brr[0] ?></a>_<a id=wprefex><? echo $brr[7] ?></a>xxx.jpg 
+        rec/<a id=wdir0><?php echo $brr[6] ?></a>/<a id=what0><?php echo $brr[0] ?></a>_<a id=wprefex><?php echo $brr[7] ?></a>xxx.jpg 
         </strong><br>
         <br>
         A Text file for later playing back will be <br>
         created as:<br>
-        <b>txt/rec_<a id=what1><? echo $brr[0] ?></a>_<a id=wdir1><? echo $brr[6] ?></a>.txt"; 
+        <b>txt/rec_<a id=what1><?php echo $brr[0] ?></a>_<a id=wdir1><?php echo $brr[6] ?></a>.txt"; 
         </b> <br>
-        <input name="dir" type="text" size="10"  value="<? echo $brr[6]  ?>"  	
-    onchange="if(this.value == ''){ alla('wdir','<? echo $brr[6]  ?>'); this.value=('<? echo $brr[6]  ?>'); }else{ alla('wdir',this.value); } " >
+        <input name="dir" type="text" size="10"  value="<?php echo $brr[6]  ?>"  	
+    onchange="if(this.value == ''){ alla('wdir','<?php echo $brr[6]  ?>'); this.value=('<?php echo $brr[6]  ?>'); }else{ alla('wdir',this.value); } " >
         / 
-        <input name="prefex" type="text" size="10" value="<? echo $brr[7]  ?>" 
-		onchange="if(this.value == ''){ document.getElementById('wprefex').innerText=('<? echo $brr[7]  ?>'); this.value=('<? echo $brr[7]  ?>'); }else{  document.getElementById('wprefex').innerText=this.value  } " >
+        <input name="prefex" type="text" size="10" value="<?php echo $brr[7]  ?>" 
+		onchange="if(this.value == ''){ document.getElementById('wprefex').innerText=('<?php echo $brr[7]  ?>'); this.value=('<?php echo $brr[7]  ?>'); }else{  document.getElementById('wprefex').innerText=this.value  } " >
         </font> .jpg<font size="2"><br>
         <input name="sub_record" type="submit"  value="Submit">
         <input name="change" type="hidden"  value="settings" >
@@ -901,7 +901,7 @@ document.getElementById(id+[i]).innerText=v;
   </table>
 </form>
 <p> 
-  <?
+  <?php
 }else{
 $brr = explode("%",$data[settings][11]);
 $rec_txt= "txt/rec_".$recordwhat."_".$dir.".txt";
@@ -928,26 +928,26 @@ title("Create View");
   <meta http-equiv="refresh" content="10">
   <img src="tv.php" width="256" height="256"><br>
   <font size="2">Image will update in 10 seconds<br>
-  "create picture <? echo  str_replace('select.php', 'tv.php', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']); ?> 
+  "create picture <?php echo  str_replace('select.php', 'tv.php', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']); ?> 
   update=10"</font> <br>
   <textarea name="textarea" cols="40">
 <meta http-equiv="refresh" content="10">
 <img src="tv.php" width="256" height="256">
 <font size="2">Image will update in 10 seconds<br>
-"create picture <? echo  str_replace('select.php', 'tv.php', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']); ?> update=10"</font>
+"create picture <?php echo  str_replace('select.php', 'tv.php', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']); ?> update=10"</font>
  </textarea>
 </p> 
-<?
+<?php
 }
 if($mode == moni){
 title("Viewing $chn");
 ?>
-<meta http-equiv="refresh" content="<?  echo $uf ?>">
+<meta http-equiv="refresh" content="<?php  echo $uf ?>">
 <center>
-  <img src="channels.php?size=big&chan=<? echo $chn ?>" width="256" height="256"><br>
-  <font size="2">Update Frequency <? for($a=1;$a<21;$a++){ $b='';  $eb='';  if($uf == $a){ $b='<b><font size=3>'; $eb= '</font></b>'; }echo " $b<a href=select.php?uf=$a&mode=moni&change=$change>$a</a>$eb \n"; }  ?></font> 
+  <img src="channels.php?size=big&chan=<?php echo $chn ?>" width="256" height="256"><br>
+  <font size="2">Update Frequency <?php for($a=1;$a<21;$a++){ $b='';  $eb='';  if($uf == $a){ $b='<b><font size=3>'; $eb= '</font></b>'; }echo " $b<a href=select.php?uf=$a&mode=moni&change=$change>$a</a>$eb \n"; }  ?></font> 
 </center>
-<? 
+<?php 
 }
 if($mode == awsettings ){
 if($sub_awsettings ==""){
@@ -963,9 +963,9 @@ function kbtoby(input){ document.form.kb.value=Math.round(input/1024); }
   <tr> 
     <td width="488" height="84" bgcolor="#F7F4F4"> <form name="form" method="post" action="">
         <strong>Guides</strong> 
-        <?  echo $discript ?>
+        <?php  echo $discript ?>
         <font size="2">
-        <? notes(" <br>
+        <?php notes(" <br>
           These settings will be used on the admin control panel. If an image 
           is above the settings below, they will be red tagged.<br>
           <br>") ?>
@@ -974,15 +974,15 @@ function kbtoby(input){ document.form.kb.value=Math.round(input/1024); }
         <table width="498" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="197"> <font size="2">Max Image Size</font><br> <font size="2">Hieght 
-              <input name="imH" type="text" id="imH" size="3" maxlength="3" value=<? echo $gdeset[0] ?>>
+              <input name="imH" type="text" id="imH" size="3" maxlength="3" value=<?php echo $gdeset[0] ?>>
               Width 
-              <input name="imW" type="text" id="imW" size="3" maxlength="3" value=<? echo $gdeset[1] ?>>
+              <input name="imW" type="text" id="imW" size="3" maxlength="3" value=<?php echo $gdeset[1] ?>>
               </font></td>
             <td width="301"><font size="2">Max Image File Size</font><br> <font size="2"> 
               Kilobytes 
-              <input name="imKB" type="text" id="kb" value="<? echo round($gdeset[2]/1024) ?>" size="7" onChange="bytokb(this.value)" >
+              <input name="imKB" type="text" id="kb" value="<?php echo round($gdeset[2]/1024) ?>" size="7" onChange="bytokb(this.value)" >
               Bytes 
-              <input name="imBY" type="text" id="byte" value="<? echo $gdeset[2] ?>" size="7"  onChange="kbtoby(this.value)"  >
+              <input name="imBY" type="text" id="byte" value="<?php echo $gdeset[2] ?>" size="7"  onChange="kbtoby(this.value)"  >
               </font></td>
           </tr>
    </table>
@@ -996,10 +996,10 @@ function kbtoby(input){ document.form.kb.value=Math.round(input/1024); }
           <tr> 
             <td colspan="2"><div align="center"><strong><a href="http://www.vmist.net/activeworlds/awscripts/awdigie/network.php" target="newnet">Network</a> 
                 Settings</strong><font size="2"> <br>
-                <input name="tognetwork" type="checkbox"  value="yes" <? if($net[1] == yes){ echo checked; } ?> >
+                <input name="tognetwork" type="checkbox"  value="yes" <?php if($net[1] == yes){ echo checked; } ?> >
                 Place this station on the AWDigie network.</font></div>
               <font size="2">
-                  <? notes("  <br>
+                  <?php notes("  <br>
           The AWDigie network is a list of users that are currently <br>
           using AWDigie and placing their station on the <a href=http://www.vmist.net/activeworlds/awscripts/awdigie/network.php target=_newnet>AWDigie Network</a>. People can view the list and watch online, rank, take snapshots or make comments. <br>
 By adding your station to the network all content outputted must be PG or below, it may be removed at any time without notice. <br>
@@ -1010,35 +1010,35 @@ By adding your station to the network all content outputted must be PG or below,
             <td width="255" height="223"><font size="2">Required Information<br>
               <br>
               Station Name or call letters<br>
-              <input name="name" type="text" id="name" value="<? echo $net[0] ?>" size="10" maxlength="10">
+              <input name="name" type="text" id="name" value="<?php echo $net[0] ?>" size="10" maxlength="10">
               <br>
-              <input name="path" type="hidden"  value="<? echo  str_replace('select.php', '', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']); ?>">
-              <input name="thisup" type="hidden" value="<? echo $net[5] ?>">
+              <input name="path" type="hidden"  value="<?php echo  str_replace('select.php', '', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']); ?>">
+              <input name="thisup" type="hidden" value="<?php echo $net[5] ?>">
               </font> <font size="2"><br>
               <br>
               Station Discription <br>
               </font><font size="2"> 
-              <textarea name="discript" cols="25" rows="3" id="textarea2"><?  echo  str_replace("returnthisline", "\n", stripslashes($net[2]));?></textarea>
+              <textarea name="discript" cols="25" rows="3" id="textarea2"><?php  echo  str_replace("returnthisline", "\n", stripslashes($net[2]));?></textarea>
               <br>
               </font><font size="2">&nbsp; </font></td>
             <td width="233"><font size="2"><br>
               Optional Info<br>
               <br>
               Update Frequency in Seconds<br>
-              <input name="fre" type="text"  size="5" maxlength="5"  value=<?  echo $net[4];  ?>>
+              <input name="fre" type="text"  size="5" maxlength="5"  value=<?php  echo $net[4];  ?>>
               <br>
               Homepage<br>
-              <input name="homepage" type="text" id="homepage" value="<? echo $net[7] ?>">
+              <input name="homepage" type="text" id="homepage" value="<?php echo $net[7] ?>">
               <br>
               Image Logo (small image)<br>
-              <input name="logo" type="text" id="logo" value="<? echo $net[8] ?>">
+              <input name="logo" type="text" id="logo" value="<?php echo $net[8] ?>">
               <br>
               Email<br>
-              <input name="owner" type="text" id="owner" value="<? echo  stripslashes($net[9])  ?>">
+              <input name="owner" type="text" id="owner" value="<?php echo  stripslashes($net[9])  ?>">
               <br>
-              <input name="rank" type="checkbox" id="rank" value="yes" <? if($net[10] == yes){ echo checked; } ?> >
+              <input name="rank" type="checkbox" id="rank" value="yes" <?php if($net[10] == yes){ echo checked; } ?> >
               Allow Ranking<br>
-              <input name="comments" type="checkbox" id="comments" value="yes"<? if($net[12] == yes){ echo checked; } ?> >
+              <input name="comments" type="checkbox" id="comments" value="yes"<?php if($net[12] == yes){ echo checked; } ?> >
               Allow Comments</font></td>
           </tr>
         </table>
@@ -1052,7 +1052,7 @@ By adding your station to the network all content outputted must be PG or below,
   </tr>
 </table>
 <p> 
-  <?
+  <?php
 $discript = stripslashes(str_replace("\r\n", "returnthisline", "$discript"));
   
 }else{
@@ -1079,21 +1079,21 @@ echo $dbfunction;
           the watermark and text message<br>
           <br>
           Watermark on top, text on bottom.<br>
-          <a href="<? echo "select.php?mode=layers&sub_layers=yes&order=imagetextYwatermark&change=$change" ?>"><img src="art/water_over.jpg" width="180" height="60" border="<? if ($dbfunction  == "imagetextYwatermark" ){ echo 3; }else{ echo 0; } ?>" ></a><br>
+          <a href="<?php echo "select.php?mode=layers&sub_layers=yes&order=imagetextYwatermark&change=$change" ?>"><img src="art/water_over.jpg" width="180" height="60" border="<?php if ($dbfunction  == "imagetextYwatermark" ){ echo 3; }else{ echo 0; } ?>" ></a><br>
           Text on top watermark on bottom.<br>
-          <a href="<? echo "select.php?mode=layers&sub_layers=yes&order=watermarkYimagetext&change=$change"; ?>"><img src="art/text_over.jpg" width="176" height="57" border="<? if ($dbfunction  == "watermarkYimagetext" ){ echo 3; }else{ echo 0; } ?>"></a><br>
-          <input name="change2" type="hidden" value="<? echo $change ?>">
+          <a href="<?php echo "select.php?mode=layers&sub_layers=yes&order=watermarkYimagetext&change=$change"; ?>"><img src="art/text_over.jpg" width="176" height="57" border="<?php if ($dbfunction  == "watermarkYimagetext" ){ echo 3; }else{ echo 0; } ?>"></a><br>
+          <input name="change2" type="hidden" value="<?php echo $change ?>">
           <input name="sub_layers" type="hidden" id="timing_sub"  value="yes">
           <input name="mode" type="hidden" id="mode"   value="layers">
           <br>
-          <? sameas() ?>
+          <?php sameas() ?>
           <br>
           </font></div></td>
     </tr>
   </table>
 </form>
 <p> 
-  <?
+  <?php
 }else{
 if("$sameas" !== ""){ $tl = $data[$sameas][24]; }else{ $tl = "$order"; }
 savedata(24,$tl);

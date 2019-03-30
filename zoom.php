@@ -1,4 +1,4 @@
-<?
+<?php
 $datapath = "art/database.php";
 foreach(file("$datapath") as $line){
 $br = explode("^^",$line); 

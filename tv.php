@@ -1,4 +1,4 @@
-<?
+<?php
 # for awdigie 1.1
 include("includes.php");
 $data = connectfile();

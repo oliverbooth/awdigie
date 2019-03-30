@@ -1,4 +1,4 @@
-<?
+<?php
 $datapath= "art/database.php";
 $thispath=$_SERVER['PHP_SELF'];
 $strlength=15;
@@ -278,7 +278,7 @@ imgpreview.src=imid;
   <script language="JavaScript">
   document.write('<select id=nummenu name=nummenu onblur="numendmove(null)" onchange="document.formlist.emptyvar.name=\'movefrom\';  document.formlist.emptyvar2.value=this.options[this.selectedIndex].value; formlist.submit(); "><option  selected></option>'); 
 
-  for (var i=0; i <= <? echo sizeof($set)-1 ?>; i++ ) { 
+  for (var i=0; i <= <?php echo sizeof($set)-1 ?>; i++ ) { 
     document.write('<option value=' + i + '>Place' + (i+1) +'</option>'); 	
 }
   document.write('</select>'); 
@@ -296,7 +296,7 @@ ct= false;
 document.getElementById('wchk').innerText='All'; 
 }
 
-for (var i=0; i <= <? echo sizeof($set)-1 ?>; i++ ) { 
+for (var i=0; i <= <?php echo sizeof($set)-1 ?>; i++ ) { 
 
 document.getElementById('check['+i+']').checked=ct;
 
@@ -304,26 +304,26 @@ document.getElementById('check['+i+']').checked=ct;
 }// end for()
 }//end function
   </script>
-<? echo "AWD Program - <strong>$datafile</strong>"; notes("<br>Small program for easier editing the program guide."); ?> 
+<?php echo "AWD Program - <strong>$datafile</strong>"; notes("<br>Small program for easier editing the program guide."); ?> 
 <font size="2"><a href="control.php"><br>
 Back to control</a></font> 
-<form action="<? echo $thispath  ?>" method="post" name="formlist" id="formlist">
+<form action="<?php echo $thispath  ?>" method="post" name="formlist" id="formlist">
   <table width="694" border="0" cellspacing="3" cellpadding="3">
     <tr> 
       <td width="200" height="23" bgcolor="#F14B4B"><font color="#FFFFFF" size="2"> 
-        <? notes("Add images here by placing a path to an image like \"images/sampleimage1.jpg\" or a directory \"images\" to add all jpegs in that folder.  ") ?>
+        <?php notes("Add images here by placing a path to an image like \"images/sampleimage1.jpg\" or a directory \"images\" to add all jpegs in that folder.  ") ?>
         <br>
         Image Location Or Directory<br>
-        <input name="imfield" type="text"  <? if($imfielderror){ echo 'style="color:red"'; } ?> value="<? echo $imfield ?>">
-         <br><? echo $imfielderror ?>      
+        <input name="imfield" type="text"  <?php if($imfielderror){ echo 'style="color:red"'; } ?> value="<?php echo $imfield ?>">
+         <br><?php echo $imfielderror ?>      
         <input name="add" type="submit" id="add" value="Add" style="">
         <input name="emptyvar" type="hidden" id="emptyvar">
         <input name="emptyvar2" type="hidden" id="emptyvar2">
         </font> </td>
       <td width="69" rowspan="2">&nbsp;</td>
-      <td width="273" rowspan="2" bgcolor="#3399FF"><div align="left"><font color="#FFFFFF" size="2"><? echo word($total_images,Image)." Total."; ?><br>
+      <td width="273" rowspan="2" bgcolor="#3399FF"><div align="left"><font color="#FFFFFF" size="2"><?php echo word($total_images,Image)." Total."; ?><br>
           Estimated Runtime: 
-          <?	
+          <?php	
 		if($net[4] == ""){ $net[4] =10; }
 		$tm =$total_images *$net[4];
 		if($tm < 60){ echo word($tm, Second); }else{ echo word(round($tm/60), Minute); }
@@ -343,7 +343,7 @@ Back to control</a></font>
     </tr>
     <tr> 
       <td height="200" colspan="4"><div  style="height:100%; overflow:auto;" bgcolor="#FFFFFF"> 
-          <? notes("Below is a list of added images and directories<br>that the tv script will display from the top down to the bottom.<br>You can change the name or place or path by clicking on the columns.<br>");  ?>
+          <?php notes("Below is a list of added images and directories<br>that the tv script will display from the top down to the bottom.<br>You can change the name or place or path by clicking on the columns.<br>");  ?>
           <font size="2"> <em><a href="javascript:selectchk()" id="wchk">All</a></em> 
           </font> 
           <table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" bgcolor="#EFEFEF">
@@ -354,46 +354,46 @@ Back to control</a></font>
               <td colspan="2"><font color="#000000" size="2">Type</font></td>
               <td colspan="2"><font size="2">Plugin File</font></td>
             </tr>
-            <? 
+            <?php 
 			$y=0;
 			foreach($set as $image){			
 			$br = explode("^",$image); 
 			$images=substr_count($image, "|");
 			$tto=''; 
 			?>
-            <tr id=tabimage<? echo $y ?>> 
-              <td height="19" id=tabNum<? echo $y ?>> <input type="checkbox" name="check[<? echo $y ?>]" value="<? echo $y ?>"> 
-                <font color="#000000" size="2"><a id=num<? echo $y ?> onClick="movebox(this.id,<? echo $y ?>)"><? echo " Place".($y+1).""; ?></a> 
-                </font> <input type="hidden" name="valnum<? echo $y ?>" width="13" height="16" id="valnum<? echo $y ?>"hidden value="<? echo $y ?>"></td>
-              <td id="tabName<? echo $y ?>"><font  size="2"><a id="name<? echo $y ?>" onClick="rename(this.id,'Name',<? echo $y ?>,null)"><? echo short($br[1])  ?></a> 
-                <input type="hidden" name="valname[<? echo $y ?>]" id="valname<? echo $y ?>" value="<?   echo $br[1]  ?>">
+            <tr id=tabimage<?php echo $y ?>> 
+              <td height="19" id=tabNum<?php echo $y ?>> <input type="checkbox" name="check[<?php echo $y ?>]" value="<?php echo $y ?>"> 
+                <font color="#000000" size="2"><a id=num<?php echo $y ?> onClick="movebox(this.id,<?php echo $y ?>)"><?php echo " Place".($y+1).""; ?></a> 
+                </font> <input type="hidden" name="valnum<?php echo $y ?>" width="13" height="16" id="valnum<?php echo $y ?>"hidden value="<?php echo $y ?>"></td>
+              <td id="tabName<?php echo $y ?>"><font  size="2"><a id="name<?php echo $y ?>" onClick="rename(this.id,'Name',<?php echo $y ?>,null)"><?php echo short($br[1])  ?></a> 
+                <input type="hidden" name="valname[<?php echo $y ?>]" id="valname<?php echo $y ?>" value="<?php   echo $br[1]  ?>">
                 </font></td>
-              <td id="tabPath<? echo $y ?>"><font  size="2" <? if(!@imagecreatefromjpeg($br[0]) && $images == 1){ echo 'color="red"'; $imerror=y;   }else{  $tto=y;  } if($images == 1){ ?> onClick="rename('path<? echo $y ?>','Path',<? echo $y ?>,null)" <? } ?> > 
-                <? if($images > 1){  echo "<img src=\"folder.gif\"  width=\"17\" height=\"13\" > "; }else{ echo "<img src=\"jpeg.gif\"  width=\"13\" height=\"16\" > "; } ?>
-                <a id="path<? echo $y ?>" > 
-                <? if($images > 1){  echo short($br[3]); }else{  if("$tto" == "" && $br[0] == ""){ echo "Not Valid"; } echo short($br[0]); } ?>
+              <td id="tabPath<?php echo $y ?>"><font  size="2" <?php if(!@imagecreatefromjpeg($br[0]) && $images == 1){ echo 'color="red"'; $imerror=y;   }else{  $tto=y;  } if($images == 1){ ?> onClick="rename('path<?php echo $y ?>','Path',<?php echo $y ?>,null)" <?php } ?> > 
+                <?php if($images > 1){  echo "<img src=\"folder.gif\"  width=\"17\" height=\"13\" > "; }else{ echo "<img src=\"jpeg.gif\"  width=\"13\" height=\"16\" > "; } ?>
+                <a id="path<?php echo $y ?>" > 
+                <?php if($images > 1){  echo short($br[3]); }else{  if("$tto" == "" && $br[0] == ""){ echo "Not Valid"; } echo short($br[0]); } ?>
                 </a> 
-                <input type="hidden" name="valpath[<? echo $y ?>]" id="valpath<? echo $y ?>" value="<? echo $br[0] ?>">
+                <input type="hidden" name="valpath[<?php echo $y ?>]" id="valpath<?php echo $y ?>" value="<?php echo $br[0] ?>">
                 </font></td>
               <td width="9%"><font color="#000000" size="2"> 
-                <?  echo "Image";   ?>
+                <?php  echo "Image";   ?>
                 </font></td>
-              <td width="19%"><font color="#000000" size="2"><a href="#" onclick="remove.value='<? echo $y ?>'; formlist.submit(); ">Remove</a> 
-                <? if($tto){ ?>
-                <a href="#" onclick="load(<? echo $y; if($images !== 1){ echo ",'$thispath?driveimage=$br[3]'"; } ?>)">Preview</a></font> 
-                <? } ?>
+              <td width="19%"><font color="#000000" size="2"><a href="#" onclick="remove.value='<?php echo $y ?>'; formlist.submit(); ">Remove</a> 
+                <?php if($tto){ ?>
+                <a href="#" onclick="load(<?php echo $y; if($images !== 1){ echo ",'$thispath?driveimage=$br[3]'"; } ?>)">Preview</a></font> 
+                <?php } ?>
               </td>
-              <td width="23%" id="tabPlug<? echo $y ?>" ><font  size="2"><a id="plug<? echo $y ?>" onClick="rename(this.id,'Plug',<? echo $y ?>,'renamebox','Edit ')"> 
-                <?  if("$br[2]" == "" ){ $br[2]  = None; }  echo short($br[2]) ?>
+              <td width="23%" id="tabPlug<?php echo $y ?>" ><font  size="2"><a id="plug<?php echo $y ?>" onClick="rename(this.id,'Plug',<?php echo $y ?>,'renamebox','Edit ')"> 
+                <?php  if("$br[2]" == "" ){ $br[2]  = None; }  echo short($br[2]) ?>
                 </a> 
-                <input type="hidden" name="valplug[<? echo $y ?>]" id="valplug<? echo $y ?>" value="<? echo $br[2] ?>">
+                <input type="hidden" name="valplug[<?php echo $y ?>]" id="valplug<?php echo $y ?>" value="<?php echo $br[2] ?>">
                 
-                <input type="hidden" id="filesize<? echo $y ?>"  value="<? if($images == 1){  echo  round(  @filesize($br[0])  /1200).'KB'; }  ?>">
+                <input type="hidden" id="filesize<?php echo $y ?>"  value="<?php if($images == 1){  echo  round(  @filesize($br[0])  /1200).'KB'; }  ?>">
                 
-                <input type="hidden"  id="imagesize<? echo $y ?>" value="<? if($images == 1){  $s = @getimagesize($br[0]);  echo "Height=$s[0] Width=$s[1]"; }else{  echo "$images Images"; }  ?>">
+                <input type="hidden"  id="imagesize<?php echo $y ?>" value="<?php if($images == 1){  $s = @getimagesize($br[0]);  echo "Height=$s[0] Width=$s[1]"; }else{  echo "$images Images"; }  ?>">
                 </font></td>
             </tr>
-            <?
+            <?php
 			$y++;
 			}//end loop
 			
@@ -404,7 +404,7 @@ Back to control</a></font>
   </table>
 <font size="2"> 
   <input name="remove" type="hidden" id="remove">
-    <? if($imerror){ echo ' <font color="#FF0000" size="2">*Can\'t use image</font>'; } ?>
+    <?php if($imerror){ echo ' <font color="#FF0000" size="2">*Can\'t use image</font>'; } ?>
     <br>
   With Selected 
   <select name="multido" id="multido" onchange="this.form.submit()">
@@ -416,11 +416,11 @@ Back to control</a></font>
   <input name="ishere" type="hidden" id="ishere" value="y">
   <br>
   </font> <font size="2"> 
-  <input name="showtime" type="checkbox" id="showtime" value="y" <? if($showtime){ echo checked; } ?> onclick="formlist.submit()">
+  <input name="showtime" type="checkbox" id="showtime" value="y" <?php if($showtime){ echo checked; } ?> onclick="formlist.submit()">
   Show Timeline</font> <br>
   <br>
-  <input name="r" type="hidden" value="<? echo $r ?>">
-  <? 
+  <input name="r" type="hidden" value="<?php echo $r ?>">
+  <?php 
 		$t_hl=count($set);
 if($showtime){			
 if($r == ""){ $r == "0"; }				
@@ -433,7 +433,7 @@ echo "<a  href=\"$thispath?r=".($r+17)."&showtime=y\" ><img src=\"fowdtorank.gif
 
 	 echo  "<br><img src=\"$thispath?timeline=y&range=$r\" id=timeimg width=\"663\" height=\"60\">";  } ?>
 </form>		
-<?  
+<?php  
 }//if format 
 }//if not timeline
 }//if not driveimage

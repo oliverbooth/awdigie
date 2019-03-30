@@ -1,4 +1,4 @@
-<?
+<?php
 $datapath = "art/database.php";
 function connectfile(){
 global $datapath;

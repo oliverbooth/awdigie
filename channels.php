@@ -1,4 +1,4 @@
-<?
+<?php
 $datapath = "art/database.php";
 $i=0;
 foreach(file("$datapath") as $line){
