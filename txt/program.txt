@@ -1,0 +1,5 @@
+art/awdigie_logo.jpg
+sampleimage1.jpg
+sampleimage2.jpg
+sampleimage3.jpg
+sampleimage4.jpg
