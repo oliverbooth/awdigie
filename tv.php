@@ -119,8 +119,8 @@ if("$imerror" !== "" && $data["settings"][9] == "yes" &&  $_COOKIE['awdigiecooki
 $image= imagecreatefromjpeg($imerror);
 }
 if("$status" == "true"){ echo "<body bgcolor=0 text=white>\n"; if($error){ echo"Station Errors<br>".str_replace("\n", "<img src=art/flash_red.gif>\n<br>", $error);}else{echo"Station is up\n<br>Current Mode <b>".$data["mode"][1]."</b>";}}else{
-
-imagejpeg($image,'','95');
+header("Content-type: image/jpeg");
+imagejpeg($image,null,'95');
 @imagedestroy($image);
 }
 }//if tex

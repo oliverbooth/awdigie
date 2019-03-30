@@ -39,7 +39,8 @@ $erim =$image;
 
 if("$erim" == ""){ readfile("art/novalid.jpg");  }else{
 @ImageCopyResized($im,$erim ,0,0,0,0,$thissize,$thissize,256,256);
-imagejpeg($im,'',$data["settings"][3]);
+header("Content-type: image/jpeg");
+imagejpeg($im,null,$data["settings"][3]);
 imagedestroy($im);
 }}
 ?>
