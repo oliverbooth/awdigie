@@ -68,9 +68,9 @@ if(  (@include($data["other"][7]))  == false){ $error = $error."-CANT USE PLUGIN
 }
 
 if($data["overchan"] !== ""){ $current=$data[$data["overchan"]];  }
-if (eregi(".txt", $dbaddess) ){
+if (preg_match("/\\.txt/i", $dbaddess) ){
 if(($tdf= @file("$dbaddess"))  == FALSE){ $error = $error."-CANT OPEN FILE: $dbaddess \n"; }
-$dbaddess=  eregi_replace("\n","",$tdf[(time()/10)%sizeof($tdf)]); 
+$dbaddess=  preg_replace("/\n/","",$tdf[(time()/10)%sizeof($tdf)]); 
 }else{
 if($data["settings"][13] == "yes"  ){ 
 $bsw = explode("%",$data["settings"][14]);
