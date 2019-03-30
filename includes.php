@@ -69,8 +69,8 @@ function imagetext(){
 global $dbtext,$dbtxtsetting,$dbtexten,$dbthisshow,$dbfont,$image,$rota,$dbtextsize,$dbcolor,$dbshset,$dbtexveric,$dbtextpos,$dbshadown,$error;
 
 if($dbtexten == "yes"){
-
-if(eregi(".txt", $dbtext) ){ 
+$brtxtdata=array("");
+if(preg_match("/\\.txt/i", $dbtext) ){ 
 $brtxtdata = explode("-",$dbtxtsetting);
 $stxting =str_replace(']','', str_replace('[','',$dbtext) ) ;
 if( ( $txttext = @file($stxting)) == FALSE){ $error = $error."-CANT OPEN FILE: $stxting \n"; }   
@@ -111,9 +111,9 @@ if( (    @imagettftext($image, $dbtextsize, $rota, $t_pos[0], $t_pos[1], @imagec
 function watermark(){ 
 global $dbwater,$error,$dbaddess,$dbaddess,$dbposi,$image,$enabwater,$dbwateren;
 if ($enabwater == "yes" or $dbwateren == "yes"){
-if (eregi(".txt", $dbwater) ){
+if (preg_match("/\\.txt/i", $dbwater) ){
 if(($wfilet= @file("$dbwater")) == FALSE){ $error = $error."-WATEMARK TXT IS NOT VALID: $dbwater \n"; }
-$dbwater=  eregi_replace("\n","",$wfilet[(time()/10)%sizeof($wfilet)]); 
+$dbwater=  preg_replace("/\n/","",$wfilet[(time()/10)%sizeof($wfilet)]); 
 }
 if(($png= @imagecreatefrompng("$dbwater")) == FALSE){ $error = $error."-CANT USE WATEMARK: $dbwater \n"; }
 $w_size= @getimagesize($dbwater);

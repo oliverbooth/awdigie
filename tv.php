@@ -25,7 +25,7 @@ if(  (@include($biir[2]))  == false){ $error = $error."-CANT USE IM PLUG: ".$bii
 }
 }else{
 $progf = explode("\n", $pimages); 
-$dbaddess=  eregi_replace("\n","",$progf[(time()/10)%sizeof($progf)]); 
+$dbaddess=  preg_replace("/\n/","",$progf[(time()/10)%sizeof($progf)]); 
 }
 
 if(($image = @imagecreatefromjpeg("$dbaddess")) == FALSE){ $error = $error."-CANT USE IMAGE: $dbaddess \n";  }
@@ -44,7 +44,7 @@ $current=$data[$ch[(rand(0,3))]];
 }else{
 if($data["settings"][6] == "yes"){ 
 if(($rotchn = @file($data["settings"][7])) == false){ $error = $error."-CANT USE CH ROTATE FILE\n";  }
-$current =$data[(eregi_replace("\n","",$rotchn[(time()/10)%sizeof($rotchn)]))];
+$current =$data[(preg_replace("/\n/","",$rotchn[(time()/10)%sizeof($rotchn)]))];
 }else{
 $current=$data[$data["settings"][4]];
 }
@@ -104,7 +104,7 @@ if($pass == "yes" ){
 $rec_txt= "txt/rec_".$brec[0]."_".$brec[6].".txt";
 $sim= file($rec_txt);
 if($data["settings"][4] == $brec[0] || $brec[0]== "all"){
-if(filesize(eregi_replace("(\n|\r)","",end($sim))) !== filesize($dbaddess) && $brec[5] > sizeof($sim) ){
+if(filesize(preg_replace("/(\n|\r)/","",end($sim))) !== filesize($dbaddess) && $brec[5] > sizeof($sim) ){
 $fpr = fopen($rec_txt,"a+");
 fputs($fpr,"rec/$brec[6]/".$brec[0]."_$brec[7]".sizeof($sim).".jpg
 ");

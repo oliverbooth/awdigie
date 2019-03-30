@@ -312,7 +312,7 @@ echo "<font color=red>$words</font>$b\n";
 $i=0;  
   $dh  = opendir($dir);
 while (false !== ($filename = readdir($dh))) {
-if($filename !== '..' && $filename !== '.' && eregi("$only", $filename) ){
+if($filename !== '..' && $filename !== '.' && preg_match("/$only/", $filename) ){
 $dirfiles[] = "$filename";
 $i++;
 echo "<option value=\"$filename\" >".ereg_replace("($only|.txt)", "", "$filename")."</option>";
@@ -359,8 +359,8 @@ echo "Disabled";
         <br>
 
         <?php
- 
-if(eregi(".txt", $data[$chn][1])){
+$togother="";
+if(preg_match("/\\.txt/i", $data[$chn][1])){
 if( (red("yes", ( file_exists($data[$chn][1]) ),"TXT File Not Valid",$chn,'<br><br><br><br>',"no"))== true){    
 $togimp = "yes";
 
@@ -387,7 +387,7 @@ echo $togother;
         Image File Size 
         <?php	if(@filesize($data[$chn][1]) > $gdeset[2] ){ echo "<font color=red><b>".round(@filesize($data[$chn][1])/1024)."KB</b></font>"; }else{  echo "<b>".round(@filesize($data[$chn][1])/1024)."KB</b>"; }
 	
-		if(!eregi(".txt", $data[$chn][1]) ){ echo '<br>';
+		if(!preg_match("/\\.txt/i", $data[$chn][1]) ){ echo '<br>';
 		 $isize = @getimagesize($data[$chn][1]); 
 	   if($isize[0] >   $gdeset[0] ){ echo "Height= <font color=red><b>$isize[0]</b></font> "; }else{ echo "Height= <b>$isize[0]</b> "; } 
        if($isize[1] > $gdeset[1] ){ echo "Width= <font color=red><b>$isize[1]</b></font>"; }else{ echo "Width= <b>$isize[1]</b>"; } } ?>
@@ -464,7 +464,7 @@ echo $togother;
         <strong>Watermark</strong><font size="2"> or .TXT</font><font size="2"> 
         <br>
        <?php  notes('Put a PNG image on top <br> of this channel.<br>',"$c");
-if(eregi(".txt", $data[$chn][8])){
+if(preg_match("/\\.txt/i", $data[$chn][8])){
 if( (red( $data[$chn][7] , ( file_exists($data[$chn][8] )) ,"TXT File Not Valid",$chn,'',"no"))== true){    
 $togimp = "yes";
 } 
@@ -604,7 +604,7 @@ if("$c" !== "1" && $data["other"][6] == "Show"){echo '<p>&nbsp;</p><p>&nbsp;</p>
               </font>Text</strong><font size="2"> or [.TXT]<br>
               <?php 
 
-		 if(  eregi(".txt", $data["globe"][7]) && $data["globe"][7][0] == '['){  
+		 if(  preg_match("/\\.txt/i", $data["globe"][7]) && $data["globe"][7][0] == '['){  
 		 
 		 $textfile=str_replace(']','', str_replace('[','',$data["globe"][7]));
 		  if( file_exists($textfile) ){  
@@ -658,7 +658,7 @@ if("$c" !== "1" && $data["other"][6] == "Show"){echo '<p>&nbsp;</p><p>&nbsp;</p>
               <input name="globe[wateren]" type="checkbox" value="yes" <?php echo checked($data["globe"][4]) ?>>
               </font><strong>Watermark</strong><font size="2"> or .TXT</font><font size="2"> 
               <br>
-              <?php if($data["globe"][4] == "yes"){  if(!is_file($data["globe"][5]) ){ echo "<font color=red>Watermark Address<br>Not a valid file</font>"; }else{  if(eregi(".txt", $data["globe"][5]) && $data["globe"][4] == "yes"){  echo "Rotating ".word( sizeof( file($data["globe"][5])) ,watermark)." from file"; }else{ echo 'Watermark Address'; } } }else{ echo 'Watermark Address'; } ?>
+              <?php if($data["globe"][4] == "yes"){  if(!is_file($data["globe"][5]) ){ echo "<font color=red>Watermark Address<br>Not a valid file</font>"; }else{  if(preg_match("/\\.txt/i", $data["globe"][5]) && $data["globe"][4] == "yes"){  echo "Rotating ".word( sizeof( file($data["globe"][5])) ,watermark)." from file"; }else{ echo 'Watermark Address'; } } }else{ echo 'Watermark Address'; } ?>
               <br>
               <input name="globe[water]"  type="text" value="<?php echo $data["globe"][5] ?>"  size="20">
               </font> <br> <font size="2">Position<br>

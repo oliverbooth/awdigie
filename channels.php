@@ -9,9 +9,12 @@ $data[$br[0]][]=$brsett;
 $i++;
 }
 
+$chan=isset($_GET["chan"]) ? $_GET["chan"] : 1;
+$size="big";
+
 if(is_numeric($chan)){ $chan = "channel".$chan; $size="big"; }
 $thfl = $data[$chan][1];
-if (eregi(".txt", $data[$chan][1]) && file_exists($thfl)) {  readfile("art/readingfile.jpg"); }else{
+if (preg_match("/\\.txt/i", $data[$chan][1]) && file_exists($thfl)) {  readfile("art/readingfile.jpg"); }else{
 if($size == "big" ){ 
 $thissize=256;
 }else{
