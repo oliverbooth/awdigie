@@ -1,10 +1,11 @@
 <?php
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+extract($_REQUEST);
+
  # for awdigie 1.1
 include("includes.php");
 $data = connectfile();
 $error = "";
-$dbwateren = isset($_GET["dbwateren"]) ? $_GET["dbwateren"] : "";
-$dbfunction = isset($_GET["dbfunction"]) ? $_GET["dbfunction"] : "";
 
 if ($data["mode"][1] == "TD") {
     header("Content-type: image/jpeg");

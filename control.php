@@ -1,4 +1,6 @@
 <?php
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+extract($_REQUEST);
 
 $datapath = "art/database.php";
 $controlpath = "control.php";
@@ -9,11 +11,6 @@ $v = 'vmi';
 $st = 'st.net';
 $wa = 'aw';
 $cu = '1';
-
-$logout = isset($_GET["logout"]) ? $_GET["logout"] : "";
-$logintothisip = isset($_GET["logintothisip"]) ? $_GET["logintothisip"] : "";
-$load_chnsett = isset($_GET["load_chnsett"]) ? $_GET["load_chnsett"] : "";
-$setbody = isset($_GET["setbody"]) ? $_GET["setbody"] : "";
 
 if (!isset($en_record) || "$en_record" == "") {
   $en_record = $brsp[12];

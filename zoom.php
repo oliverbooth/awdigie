@@ -1,4 +1,7 @@
 <?php
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+extract($_REQUEST);
+
 $datapath = "art/database.php";
 foreach (file("$datapath") as $line) {
     $br = explode("^^", $line);
@@ -27,6 +30,7 @@ if ("$rotate" !== "0") {
     $orimage = imagerotate($orimage, $rotate, 0);
 }
 imageCopyResampled($image, $orimage, $posx, $posy, 0, 0, $zoom, $zoom, 256, 256);
-imagejpeg($image, null 95);
+header("Content-type: image/jpeg");
+imagejpeg($image, null, 95);
 imagedestroy($image);
  

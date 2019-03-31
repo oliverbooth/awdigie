@@ -1,9 +1,9 @@
 <?php
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+extract($_REQUEST);
+
 $datapath = "art/database.php";
 $new_file = file($datapath);
-
-$mode = $_GET["mode"];
-$change = $_GET["change"];
 
 $i = 0;
 foreach (file("$datapath") as $line) {
