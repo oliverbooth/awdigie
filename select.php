@@ -1199,15 +1199,15 @@ if ($mode == "create_view") {
   title("Create View");
   ?>
     <p align="center">
-        <meta http-equiv="refresh" content="10">
+        <meta http-equiv="refresh" content="5">
         <img src="tv.php" width="256" height="256"><br>
-        <font size="2">Image will update in 10 seconds<br>
+        <font size="2">Image will update in 5 seconds<br>
             "create picture <?php echo  str_replace('select.php', 'tv.php', $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']); ?>
             update=10"</font> <br>
         <textarea name="textarea" cols="40">
-<meta http-equiv="refresh" content="10">
+<meta http-equiv="refresh" content="5">
 <img src="tv.php" width="256" height="256">
-<font size="2">Image will update in 10 seconds<br>
+<font size="2">Image will update in 5 seconds<br>
 "create picture <?php echo  str_replace('select.php', 'tv.php', $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']); ?> update=10"</font>
  </textarea>
     </p>
